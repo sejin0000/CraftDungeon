@@ -23,7 +23,7 @@ public class TopDownCharacterController : MonoBehaviour
 
     public void CallAttackEvent()
     {
-        if (AttackCoolTime < 0 && EventSystem.current.IsPointerOverGameObject() == false)
+        if (AttackCoolTime < 0 && !EventSystem.current.IsPointerOverGameObject())
         {
             AttackCoolTime = AttackDelay;
             OnAttackEvent?.Invoke();
