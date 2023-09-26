@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ZombieSO
   m_EditorClassIdentifier: 
   enemyName: Zombie
-  hp: 20
+  hp: 30
   damage: 3
   moveSpeed: 3
   enemySprite: {fileID: 823681001, guid: cf3ee5442e8fdda43899d3b51a4e574c, type: 3}

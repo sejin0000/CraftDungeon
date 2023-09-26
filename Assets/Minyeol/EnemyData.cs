@@ -10,7 +10,7 @@ public class EnemyData : ScriptableObject
     public string EnemyName { get { return enemyName; } }
     [SerializeField] 
     private int hp;
-    public int Hp { get { return hp; } set { hp = value; } }
+    public int Hp { get { return hp; } }
     // 1. public int hp
     // 2. set{}
     // 3. Enemy ¼öÁ¤

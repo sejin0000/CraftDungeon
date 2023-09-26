@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4477cef2fd28d4d9bb12c7cd295f4b, type: 3}
   m_Name: ArrowSO
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Arrow
   damage: 0
-  speed: 0
-  weaponSprite: {fileID: 0}
+  speed: 1
+  weaponSprite: {fileID: 94088880, guid: 3af78b5a777788647bea14f8b543d40c, type: 3}

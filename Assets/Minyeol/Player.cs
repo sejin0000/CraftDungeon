@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private int level;
+    public float Level { get { return level; } }
 
     [SerializeField]
     private float curExp; // 경험치 슬라이더에 curExp / maxExp로 표시 할 예정

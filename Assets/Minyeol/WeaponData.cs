@@ -15,7 +15,7 @@ public class WeaponData : ScriptableObject
 
     [SerializeField]
     private float speed; // weapon는 공격속도, bullet는 발사속도
-    public float Speed { get { return Speed; } }
+    public float Speed { get { return speed; } }
 
     [SerializeField]
     private Sprite weaponSprite;

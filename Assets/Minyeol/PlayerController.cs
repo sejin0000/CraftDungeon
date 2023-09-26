@@ -6,17 +6,24 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private Player player;
+    
     public Vector2 inputVec;
     private Vector2 moveDirection = Vector2.zero;
     public float moveSpeed = 5f;
+    public float level;
     private Rigidbody2D rigid;
     private SpriteRenderer spriter;
+    
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
-        moveSpeed = GetComponent<Player>().Speed;
+        player = GetComponent<Player>();
+        moveSpeed = player.Speed;
+        level = player.Level;
     }
     private void LateUpdate()
     {
