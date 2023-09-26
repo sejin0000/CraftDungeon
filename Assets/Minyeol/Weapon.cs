@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public WeaponData weaponData;
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
+        GetComponent<Weapon>().weaponData = weaponData;
+        transform.name = weaponData.WeaponName;
+        GetComponent<SpriteRenderer>().sprite = weaponData.WeaponSprite;
     }
 
     // Update is called once per frame
@@ -16,3 +21,4 @@ public class Weapon : MonoBehaviour
         
     }
 }
+

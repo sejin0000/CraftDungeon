@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour // 에너미 스포너에 붙이기
         newEnemy.name = newEnemy.enemyData.EnemyName;
         //newEnemy.GetComponent<Image>().sprite = newEnemy.enemyData.EnemySprite;
         newEnemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
+
         return newEnemy;
     }
 }
