@@ -4,34 +4,23 @@ using UnityEngine;
 
 public class FieldItem : MonoBehaviour
 {
-    public GameObject obj;
-    public Item curItem;
+    public ItemSO curItem;
 
-    public FieldItem(Item item)
+    public FieldItem(ItemSO item)
     {
         curItem = item;
-        GetComponentInChildren<SpriteRenderer>().sprite = curItem.이미지;
-        obj = curItem.프리팹;
-    }
-
-    public FieldItem(GameObject item)
-    {
-        obj = item;
-        GetComponentInChildren<SpriteRenderer>().sprite = obj.GetComponent<Item>().이미지;
-        curItem = obj.GetComponent<Item>();
+        GetComponentInChildren<SpriteRenderer>().sprite = curItem.sprite;
     }
 
     private void Start()
     {
-        if (obj != null)
-        {
-            GetComponentInChildren<SpriteRenderer>().sprite = obj.GetComponent<Item>().이미지;// 임시
-            curItem = obj.GetComponent<Item>();
-        }
         if (curItem != null)
         {
-            GetComponentInChildren<SpriteRenderer>().sprite = curItem.이미지;// 임시
-            obj = curItem.프리팹;
+            GetComponentInChildren<SpriteRenderer>().sprite = curItem.sprite;
+        }
+        else
+        {
+            Debug.LogWarning("curItem이 비어있습니다");
         }
     }
 

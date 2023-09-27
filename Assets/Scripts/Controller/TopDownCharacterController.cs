@@ -8,7 +8,7 @@ public class TopDownCharacterController : MonoBehaviour
     public event Action<Vector2> OnLookEvent;
     public event Action OnAttackEvent;
 
-    float AttackDelay = 1;
+    float AttackDelay = 0.8f;
     float AttackCoolTime = 0;
 
     public void CallMoveEvent(Vector2 direction)
