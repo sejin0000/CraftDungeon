@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace EnumManager
 {
+    public enum Direction
+    {
+        Top, Down, Left, Right
+    }
+
     public enum DoorType
     {
         Left, Right, Top, Bottom
