@@ -315,9 +315,6 @@ GameObject:
   - component: {fileID: 103970448}
   - component: {fileID: 103970449}
   - component: {fileID: 103970450}
-  - component: {fileID: 103970451}
-  - component: {fileID: 103970452}
-  - component: {fileID: 103970453}
   - component: {fileID: 103970454}
   m_Layer: 0
   m_Name: Test_Player
@@ -417,48 +414,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &103970451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103970447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7614efc6a61ad644785ec6fffe1c563e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseStats:
-    statsChangeType: 2
-    maxHealth: 31
-    speed: 2.8
-    attackSO: {fileID: 11400000, guid: 5c3ca9ff413cc284999a8f3eb3f9e9d9, type: 2}
-  statsModifiers: []
---- !u!114 &103970452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103970447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd194f3c8a8eb764cb7c5f66f8cca74c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &103970453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103970447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 941a3b12e208b2f4e9f44c6dc48f853e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &103970454
 Rigidbody2D:
   serializedVersion: 4
