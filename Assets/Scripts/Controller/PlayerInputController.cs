@@ -32,9 +32,4 @@ public class PlayerInputController : TopDownCharacterController
     {
         CallAttackEvent();
     }
-
-    public void OnInventory(InputValue value)
-    {
-        UIManager.Instance.OpenUi();
-    }
 }

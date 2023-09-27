@@ -15,7 +15,6 @@ public class TopDownAnimationController : TopDownAnmations
     {
         controller.OnAttackEvent += Attacking;
         controller.OnMoveEvent += Move;
-        PlayerInventory.I.ChangeEquippedItemEvent += ItemTypeCheck;
     }
 
     private void Attacking()
@@ -26,18 +25,6 @@ public class TopDownAnimationController : TopDownAnmations
     private void Move(Vector2 vector)
     {
         animator.SetBool("IsRun", vector.magnitude > 0.5f); ;
-    }
-
-    public void ItemTypeCheck(ItemSO item)
-    {
-        if (item.type == Itemtype.MeleeWeapon)
-        {
-            animator.SetFloat("WeaponType", 0);
-        }
-        else
-        {
-            animator.SetFloat("WeaponType", 1);
-        }
     }
 
 }
