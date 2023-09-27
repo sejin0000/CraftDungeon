@@ -225,4 +225,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curItem: {fileID: 0}
   icon: {fileID: 880007251058022332}
-  info: {fileID: 0}

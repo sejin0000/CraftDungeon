@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f56f9e6637f4a6842916773afe9b42bc, type: 3}
-  m_Name: WoodenSword
+  m_Name: WoodenMandrel
   m_EditorClassIdentifier: 
-  Name: "\uB098\uBB34 \uAC80"
-  sprite: {fileID: -1343057984, guid: 3af78b5a777788647bea14f8b543d40c, type: 3}
+  Name: "\uB098\uBB34 \uACE1\uAD2D\uC774"
+  sprite: {fileID: -1535232336, guid: 3af78b5a777788647bea14f8b543d40c, type: 3}
   type: 0
-  power: 10
-  explain: "\uB098\uBB34\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uAC80\uC774\uB2E4, \uCE7C\uB0A0\uC774
-    \uB454\uD574 \uC624\uB798 \uC0AC\uC6A9\uD558\uC9C0 \uBABB\uD560 \uAC70 \uAC19\uB2E4"
-  pos: {x: 0, y: 0.25, z: 0}
+  power: 7
+  explain: "\uB098\uBB34\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uACE1\uAD2D\uC774\uC774\uB2E4,
+    \uAD11\uBB3C\uC744 \uCC44\uC9D1\uD560\uB54C \uC0AC\uC6A9 \uD560 \uC218 \uC788\uC744
+    \uAC70 \uAC19\uB2E4"
+  pos: {x: 0, y: 0.2, z: 0}
   rot: {x: 0, y: 0, z: -45}

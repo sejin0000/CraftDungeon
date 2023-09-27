@@ -12,7 +12,7 @@ public class ItemSO : ScriptableObject
     public int power;
     public string explain;
     public Vector3 pos;
-    [HideInInspector] public Vector3 rot = new Vector3(0,0,-45);
+    public Vector3 rot = new Vector3(0,0,-45);
 }
 
 public enum Itemtype
