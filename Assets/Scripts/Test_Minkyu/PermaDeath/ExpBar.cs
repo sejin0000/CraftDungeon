@@ -43,11 +43,17 @@ public class ExpBar : MonoBehaviour
         {
             ExpApplied += 1;
             isApply = true;
-            if (curExp + 1 >= maxExp)
+            if (curExp + 1 >= maxExp && level < ExpTable.Length)
             {
                 curExp = 0;
                 level += 1;
                 maxExp = ExpTable[level - 1];
+            }
+            else if (curExp + 1 >= maxExp)
+            {
+                curExp = 9999;
+                level += 1;
+                maxExp = 9999;
             }
             else
             {
