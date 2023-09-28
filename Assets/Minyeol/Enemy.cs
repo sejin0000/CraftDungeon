@@ -20,17 +20,6 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
         moveSpeed = enemyData.MoveSpeed;
     }
 
-
-    /*    private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if(collision.gameObject.CompareTag("Player"))
-            {
-               // enemyData.Hp -= GameManager.instance.player.weapon.
-            }
-
-
-        }*/
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
@@ -46,6 +35,14 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
             // 내 체력 깎기(player의 weapon 데미지만큼)
             Debug.Log("무기 데미지" + collision.transform.GetComponent<Weapon>().weaponData.Damage);
             Debug.Log("피격" + hp);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.transform.GetComponent<PlayerController>().hp -= damage;
         }
     }
 

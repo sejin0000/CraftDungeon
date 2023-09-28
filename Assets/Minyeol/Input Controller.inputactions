@@ -15,9 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
+                    "name": "Look",
                     "type": "Value",
                     "id": "720fba93-2cf4-4a80-b425-2832c2b56519",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Fire",
+                    "type": "Value",
+                    "id": "aefac881-a732-4029-a320-6ace8b35aa6a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -26,7 +35,7 @@
             ],
             "bindings": [
                 {
-                    "name": "OnMove",
+                    "name": "WASD",
                     "id": "5632c383-267c-4e6e-b2c1-4715aa7e8770",
                     "path": "2DVector",
                     "interactions": "",
@@ -85,7 +94,18 @@
                     "id": "2ddedde9-f0da-4c2b-b5d2-9556cbbfc2bc",
                     "path": "<Mouse>/position",
                     "interactions": "",
-                    "processors": "NormalizeVector2",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d78b6bd1-9934-41ff-bd9f-dc3747470f56",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Fire",
                     "isComposite": false,
