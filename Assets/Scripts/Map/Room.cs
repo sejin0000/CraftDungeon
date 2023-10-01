@@ -35,18 +35,26 @@ public class Room : MonoBehaviour
                 case DoorType.Right:
                     if (GetRightRoom() == null)
                         door.gameObject.SetActive(false);
+                    else
+                        door.SetLinkedRoom(GetRightRoom());
                     break;
                 case DoorType.Left:
                     if (GetLeftRoom() == null)
                         door.gameObject.SetActive(false);
+                    else
+                        door.SetLinkedRoom(GetLeftRoom());
                     break;
                 case DoorType.Top:
                     if (GetTopRoom() == null)
                         door.gameObject.SetActive(false);
+                    else
+                        door.SetLinkedRoom(GetTopRoom());
                     break;
                 case DoorType.Bottom:
                     if (GetBottomRoom() == null)
                         door.gameObject.SetActive(false);
+                    else
+                        door.SetLinkedRoom(GetBottomRoom());
                     break;
             }
         }

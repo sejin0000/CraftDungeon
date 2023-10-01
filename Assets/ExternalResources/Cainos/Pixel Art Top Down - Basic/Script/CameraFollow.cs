@@ -2,32 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cainos.PixelArtTopDown_Basic
+public class CameraFollow : MonoBehaviour
 {
-    //let camera follow target
-    public class CameraFollow : MonoBehaviour
+    public Transform _target;
+    public float lerpSpeed = 1.0f;
+
+    private Vector3 _offset;
+
+    private Vector3 _targetPos;
+
+    private void Start()
     {
-        public Transform target;
-        public float lerpSpeed = 1.0f;
+        if (_target == null) return;
 
-        private Vector3 offset;
+        _offset = transform.position - _target.position;
+    }
 
-        private Vector3 targetPos;
+    private void Update()
+    {
+        if (_target == null) return;
 
-        private void Start()
-        {
-            if (target == null) return;
+        _targetPos = _target.position + _offset;
+        transform.position = Vector3.Lerp(transform.position, _targetPos, lerpSpeed * Time.deltaTime);
+    }
 
-            offset = transform.position - target.position;
-        }
 
-        private void Update()
-        {
-            if (target == null) return;
-
-            targetPos = target.position + offset;
-            transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
-        }
-
+    public void SetTarget(Transform target)
+    {
+        _target = target;
     }
 }
