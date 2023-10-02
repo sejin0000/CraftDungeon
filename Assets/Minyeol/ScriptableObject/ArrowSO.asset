@@ -15,4 +15,4 @@ MonoBehaviour:
   weaponName: Arrow
   damage: 0
   speed: 1
-  weaponSprite: {fileID: 94088880, guid: 3af78b5a777788647bea14f8b543d40c, type: 3}
+  weaponSprite: {fileID: -1981934449, guid: 9e41a8270d6905e49862c26c78751e6f, type: 3}

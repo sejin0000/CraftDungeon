@@ -16,4 +16,4 @@ MonoBehaviour:
   hp: 20
   damage: 1
   moveSpeed: 5
-  enemySprite: {fileID: -863891970, guid: cf3ee5442e8fdda43899d3b51a4e574c, type: 3}
+  enemySprite: {fileID: -1848417891, guid: 3d4471d6c8c2c7c47a670327cc29ea38, type: 3}
