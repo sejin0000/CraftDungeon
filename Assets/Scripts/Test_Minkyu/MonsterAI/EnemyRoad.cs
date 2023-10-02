@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
@@ -17,7 +18,6 @@ public class EnemyRoad : MonoBehaviour
 
     private PriorityQueue OpenedSet;
     private List<Node> ClosedSet;
-    
 
     private enum Directions
     {
@@ -45,7 +45,7 @@ public class EnemyRoad : MonoBehaviour
     private void Start()
     {
         CreateGrid();
-        PathFinding();
+        //PathFinding();
 
     }
     private void Update()
@@ -54,6 +54,7 @@ public class EnemyRoad : MonoBehaviour
         {
             isDelay = true;
             GetPosition();
+            PathFinding();
             StartCoroutine(CallPosPerSecond());
         }
     }
@@ -65,6 +66,13 @@ public class EnemyRoad : MonoBehaviour
         Debug.Log($"enemy : {Tilemap.WorldToCell(enemyPos)}, [{GetNodeFromPos(enemyPos).xIndex}, {GetNodeFromPos(enemyPos).yIndex}]");
         Debug.Log($"player : {Tilemap.WorldToCell(playerPos)}, [{GetNodeFromPos(playerPos).xIndex}, {GetNodeFromPos(playerPos).yIndex}]");
     }
+
+    private Vector3 GetDiffBetweenGridNPos(Vector3 objectPos)
+    {
+        Vector3Int objectCellPos = Tilemap.WorldToCell(objectPos);
+        return objectPos - Tilemap.GetCellCenterWorld(objectCellPos);
+    }
+
     private void CreateGrid()        // grid �迭ȭ
     {
         Tilemap.CompressBounds();
@@ -98,7 +106,9 @@ public class EnemyRoad : MonoBehaviour
     private void PathFinding()
     {
         Vector3 startPos = Enemy.transform.position;
+        Vector3 startDiffPos = GetDiffBetweenGridNPos(startPos);
         Vector3 endPos = Player.transform.position;
+        Vector3 endDiffPos = GetDiffBetweenGridNPos(endPos);
         List<Node> path = GetPath(startPos, endPos);
         if (path != null)
         {
@@ -109,8 +119,24 @@ public class EnemyRoad : MonoBehaviour
 
             for (int i = 0; i < path.Count - 1; i++)
             {
-                Debug.DrawLine(new Vector3(path[i].xPos, path[i].yPos), new Vector3(path[i + 1].xPos, path[i + 1].yPos), Color.red, 2f);
+                if (i == 0)
+                {
+                    Debug.DrawLine(startPos, new Vector3(path[i].xPos, path[i].yPos) - startDiffPos, Color.red, 5f);
+                }
+                if (i == path.Count - 2)
+                {
+                    Debug.DrawLine(new Vector3(path[i].xPos, path[i].yPos) - startDiffPos, endPos, Color.red, 5f);
+                }
+                else
+                {
+                    Debug.DrawLine(new Vector3(path[i].xPos, path[i].yPos) - startDiffPos, new Vector3(path[i + 1].xPos, path[i + 1].yPos) - startDiffPos, Color.red, 5f);
+                }
             }
+        }
+
+        foreach (Node node in grid)
+        {
+            node.parent = null;
         }
     }
     private List<Node> GetPath(Vector3 startPos, Vector3 endPos)
