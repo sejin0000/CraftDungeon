@@ -174,7 +174,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: RotPivot/WeaponPivot/Hand/EquipmentItem
+    path: RotPivot/WeaponPivot/Hand/WeaponPivot
     classID: 58
     script: {fileID: 0}
     flags: 0
@@ -205,7 +205,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1384145683
+      path: 895167524
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 58
@@ -666,7 +666,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: RotPivot/WeaponPivot/Hand/EquipmentItem
+    path: RotPivot/WeaponPivot/Hand/WeaponPivot
     classID: 58
     script: {fileID: 0}
     flags: 0

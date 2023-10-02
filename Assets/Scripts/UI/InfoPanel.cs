@@ -14,6 +14,7 @@ public class InfoPanel : MonoBehaviour
     public Text _type;
     public Text _power;
     public Text _ex;
+    public Text _button;
 
     public ItemSO _item;
     public Slot _slot;
@@ -25,9 +26,19 @@ public class InfoPanel : MonoBehaviour
 
         _icon.sprite = item.sprite;
         _name.text = item.name;
-        _type.text = item.type.ToString();
+
+        if (item.type == ItemType.Weapon)
+        {
+            _type.text = "무기";
+            _button.text = "장착";
+        }
+        if (item.type == ItemType.Part)
+        {
+            _type.text = "소모품";
+            _button.text = "사용";
+        }
+
         _power.text = item.power.ToString();
-        _ex.text = item.explanation.ToString();
 
         infoPanel.SetActive(true);
 
@@ -45,10 +56,20 @@ public class InfoPanel : MonoBehaviour
         Destroy(_slot.gameObject);
         Inventory.Instance.RemoveItem(_item);
         infoPanel.SetActive(false);
+        EquippedItem.Instance.EquipItemRemove(_item);
     }
 
     public void equipment()
     {
-        Debug.Log("{0}장비 하였습니다", _item);
+        if (_item.type == ItemType.Weapon)
+        {
+            Debug.Log(_item.name);
+            EquippedItem.Instance.EquipItem(_item);
+        }
+        if (_item.type == ItemType.Part)
+        {
+            Debug.Log("아이템을 사용했습니다");
+        }
+
     }
 }

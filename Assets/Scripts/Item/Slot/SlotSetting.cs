@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class SlotSetting : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class SlotSetting : MonoBehaviour
         }
     }
 
-    public bool AddSlotItem(ItemSO item)
+    public bool AddInventory(ItemSO item)
     {
         for (int i = 0; i < slotCount; i++)
         {
@@ -49,4 +50,17 @@ public class SlotSetting : MonoBehaviour
         }
         return false;
     }
+
+    public GameObject AddSlot()
+    {
+        GameObject Obj = Instantiate(InvenSlot);
+        return Obj;
+    }
+
+
+
+
+
+
+
 }
