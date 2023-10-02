@@ -17,7 +17,7 @@ public class Door : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManagerM.Instance.cameraFollow.SetTarget(linkedRoom.transform);
+            GameManager.Instance.cameraFollow.SetTarget(linkedRoom.transform);
 
             WarpPlayer(this.doorType, collision.gameObject);
         }

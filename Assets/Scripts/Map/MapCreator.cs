@@ -45,7 +45,7 @@ public class MapCreator : Singleton<MapCreator>
                 LoadRoom(new RoomInfo(string.Concat(stage, "_Normal1"), Vector2.zero));
 
                 // 테스트용
-                GameManagerM.Instance.cameraFollow.SetTarget(loadedRooms[0].transform);
+                GameManager.Instance.cameraFollow.SetTarget(loadedRooms[0].transform);
 
                 continue;
             }
