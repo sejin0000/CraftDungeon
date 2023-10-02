@@ -4,39 +4,12 @@ using UnityEngine;
 
 public class FieldItem : MonoBehaviour
 {
-    public GameObject obj;
-    public Item curItem;
+    public ItemSO curItem;
+    private SpriteRenderer icon;
 
-    public FieldItem(Item item)
+    private void Awake()
     {
-        curItem = item;
-        GetComponentInChildren<SpriteRenderer>().sprite = curItem.이미지;
-        obj = curItem.프리팹;
-    }
-
-    public FieldItem(GameObject item)
-    {
-        obj = item;
-        GetComponentInChildren<SpriteRenderer>().sprite = obj.GetComponent<Item>().이미지;
-        curItem = obj.GetComponent<Item>();
-    }
-
-    private void Start()
-    {
-        if (obj != null)
-        {
-            GetComponentInChildren<SpriteRenderer>().sprite = obj.GetComponent<Item>().이미지;// 임시
-            curItem = obj.GetComponent<Item>();
-        }
-        if (curItem != null)
-        {
-            GetComponentInChildren<SpriteRenderer>().sprite = curItem.이미지;// 임시
-            obj = curItem.프리팹;
-        }
-    }
-
-    public void CallDestroy()
-    {
-        Destroy(gameObject);
+        icon = GetComponentInChildren<SpriteRenderer>();
+        icon.sprite = curItem.sprite;
     }
 }

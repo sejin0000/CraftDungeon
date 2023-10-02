@@ -28,10 +28,8 @@ public class PlayerInputController : TopDownCharacterController
         CallLookEvent(newAim);//이벤트 호출
     }
 
-
     public void OnAttack(InputValue value)
     {
         CallAttackEvent();
     }
-
 }
