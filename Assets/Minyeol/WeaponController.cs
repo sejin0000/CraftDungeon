@@ -64,12 +64,12 @@ public class WeaponController : MonoBehaviour
 
         Debug.Log("attackArea");
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         attackArea.enabled = false;
 
         Debug.Log("traileffect");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         trailEffect.enabled = false;
 
         Debug.Log("strop coroutine");

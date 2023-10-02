@@ -23,9 +23,16 @@ public class PlayerController : MonoBehaviour
     private bool isFireReady;
     public WeaponController equipWeapon;
 
+    // Look 贸府
     [SerializeField] private SpriteRenderer armRenderer;
     [SerializeField] private Transform armPivot;
     [SerializeField] private SpriteRenderer characterSpriter;
+
+    // Attack 贸府
+    [SerializeField] private Transform bulletSpawnPosition;
+    private Vector2 aimDirection = Vector2.right;
+    private float timeSinceLastAttack = float.MaxValue;
+    protected bool IsAttacking { get; set; }
 
 
     private void Awake()
@@ -70,13 +77,14 @@ public class PlayerController : MonoBehaviour
     }
     public void OnFire()
     {
+        
         Attack();
     }
 
     void Attack()
     {
-        if (equipWeapon == null)
-            return;
+        Debug.Log("Fire");
+        
 
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.speed < fireDelay;
@@ -97,8 +105,9 @@ public class PlayerController : MonoBehaviour
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         armRenderer.flipY = Mathf.Abs(rotZ) > 90f;
         characterSpriter.flipX = armRenderer.flipY;
+
         armPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-        
+
     }
 
 }
