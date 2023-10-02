@@ -25,7 +25,7 @@ public class DroppableUI : MonoBehaviour, IPointerExitHandler,IDropHandler,IPoin
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null)
+        if (eventData.pointerDrag != null && eventData.pointerDrag.tag == "Item")
         {
             eventData.pointerDrag.transform.SetParent(transform);
             eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
