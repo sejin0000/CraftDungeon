@@ -9,11 +9,15 @@ public class TopDownMovement : MonoBehaviour
 
     private Vector2 _movementDirection = Vector2.zero;
     private Rigidbody2D _rigidbody;
+    private Transform CharaecterPos;
+
+    bool _isMovingCheck = false;
 
     private void Awake()
     {
         _controller = GetComponent<TopDownCharacterController>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        CharaecterPos = GetComponent<Transform>();
     }
 
     private void Start()
@@ -25,6 +29,13 @@ public class TopDownMovement : MonoBehaviour
     private void FixedUpdate()
     {
         ApplyMovment(_movementDirection);
+        if (!_isMovingCheck)
+        {
+            _isMovingCheck = true;
+            Debug.Log(CharaecterPos.position);
+            StartCoroutine(CallSeconds());
+        }
+
     }
 
     private void Move(Vector2 direction)
@@ -37,5 +48,11 @@ public class TopDownMovement : MonoBehaviour
         direction = direction * 5;
 
         _rigidbody.velocity = direction;
+    }
+
+    IEnumerator CallSeconds()
+    {
+        yield return new WaitForSeconds(1f);
+        _isMovingCheck = false;
     }
 }

@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : MonoBehaviour
+public class Node : IComparable<Node>
 {
     public float xPos;
     public float yPos;
@@ -50,5 +51,21 @@ public class Node : MonoBehaviour
         node.parent = this.parent;
         node.isWalkable = this.isWalkable;
         return node;
+    }
+
+    public int CompareTo(Node compareNode)
+    {
+        if (this.fCost < compareNode.fCost)
+        {
+            return -1;
+        }
+        else if (this.fCost > compareNode.fCost)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

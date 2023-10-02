@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
@@ -13,6 +14,10 @@ public class EnemyRoad : MonoBehaviour
     private bool isDelay;
 
     private Node[,] grid;
+
+    private PriorityQueue OpenedSet;
+    private List<Node> ClosedSet;
+    
 
     private enum Directions
     {
@@ -36,7 +41,14 @@ public class EnemyRoad : MonoBehaviour
         new Vector3(-1, -1, 0),
         new Vector3(1, -1, 0)
     };
-    public void Update()
+
+    private void Start()
+    {
+        CreateGrid();
+        PathFinding();
+
+    }
+    private void Update()
     {
         if (isDelay == false)
         {
@@ -50,8 +62,8 @@ public class EnemyRoad : MonoBehaviour
         Vector3 enemyPos = Enemy.transform.position;
         Vector3 playerPos = Player.transform.position;
 
-        Debug.Log($"enemy : {Tilemap.WorldToCell(enemyPos)}");
-        Debug.Log($"player : {Tilemap.WorldToCell(playerPos)}");
+        Debug.Log($"enemy : {Tilemap.WorldToCell(enemyPos)}, [{GetNodeFromPos(enemyPos).xIndex}, {GetNodeFromPos(enemyPos).yIndex}]");
+        Debug.Log($"player : {Tilemap.WorldToCell(playerPos)}, [{GetNodeFromPos(playerPos).xIndex}, {GetNodeFromPos(playerPos).yIndex}]");
     }
     private void CreateGrid()        // grid 배열화
     {
@@ -83,6 +95,58 @@ public class EnemyRoad : MonoBehaviour
             }
         }
     }
+    private void PathFinding()
+    {
+        Vector3 startPos = Enemy.transform.position;
+        Vector3 endPos = Player.transform.position;
+        List<Node> path = GetPath(startPos, endPos);
+        if (path != null)
+        {
+            for (int i = 0; i < path.Count; i++)
+            {
+                Debug.Log($"[{path[i].xIndex}, {path[i].yIndex}]");
+            }
+
+            for (int i = 0; i < path.Count - 1; i++)
+            {
+                Debug.DrawLine(new Vector3(path[i].xPos, path[i].yPos), new Vector3(path[i + 1].xPos, path[i + 1].yPos), Color.red, 2f);
+            }
+        }
+    }
+    private List<Node> GetPath(Vector3 startPos, Vector3 endPos)
+    {
+        OpenedSet = new PriorityQueue();
+        ClosedSet = new List<Node>();
+        Node startNode = GetNodeFromPos(startPos);
+        Node currentNode = GetNodeFromPos(startPos);
+        Node endNode = GetNodeFromPos(endPos);
+        getCurrentNodeCost(startNode, currentNode, endNode);
+        OpenedSet.Enqueue(currentNode);
+
+        while (OpenedSet.Count() > 0)
+        {
+            GetNextNode(startNode, currentNode, endNode, OpenedSet);
+            currentNode = OpenedSet.Dequeue();
+            ClosedSet.Add(currentNode);
+
+            if (currentNode.xIndex == endNode.xIndex && currentNode.yIndex == endNode.yIndex)
+            {
+                List<Node> ansPath = new List<Node>();
+                Node ansNode = currentNode;
+                ansPath.Add(ansNode);
+
+                while (ansNode.xIndex != startNode.xIndex || ansNode.yIndex != startNode.yIndex)
+                {
+                    ansPath.Add(ansNode.parent);
+                    ansNode = ansNode.parent;
+                }
+                ansPath.Add(startNode);
+                ansPath.Reverse();
+                return ansPath;
+            }
+        }
+        return null;
+    }
 
     public Node GetNodeFromPos(Vector3 position)
     {
@@ -94,10 +158,11 @@ public class EnemyRoad : MonoBehaviour
         return node;
     }
 
+    
     // gcost : 시작 노드부터 현재 노드까지의 가중치
     // hcost : 현재 노트부터 끝 노드까지의 가중치
     // fcost : gcost + hcost
-    private void GetNextNode(Node startNode, Node currentNode, Node endNode)
+    private void GetNextNode(Node startNode, Node currentNode, Node endNode, PriorityQueue prQueue)
     {
         int newYindex;
         int newXindex;
@@ -105,20 +170,26 @@ public class EnemyRoad : MonoBehaviour
         {
             newYindex = (int)(currentNode.yIndex + direction.y);
             newXindex = (int)(currentNode.xIndex + direction.x);
-            if (grid[newYindex,newXindex].isWalkable)
+            try
             {
-                Node nextNode = grid[newYindex,newXindex];
-                if (nextNode.parent == null)
+                if (grid[newYindex, newXindex].isWalkable)
                 {
-                    nextNode.xIndex = newXindex;
-                    nextNode.yIndex = newYindex;
-                    getCurrentNodeCost(startNode, nextNode, endNode);
-                    nextNode.parent = currentNode;
+                    Node nextNode = grid[newYindex, newXindex];
+                    if (nextNode.parent == null)
+                    {
+                        nextNode.xIndex = newXindex;
+                        nextNode.yIndex = newYindex;
+                        getCurrentNodeCost(startNode, nextNode, endNode);
+                        nextNode.parent = currentNode;
+                        prQueue.Enqueue(nextNode);
+                    }
                 }
-                //else if (nextNode.)
+            }
+            catch
+            {
+                continue;
             }
         }
-        
     }
     private void getCurrentNodeCost(Node startNode, Node currentNode, Node endNode)
     {
