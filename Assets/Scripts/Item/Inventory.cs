@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,33 +6,47 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
 
-    public List<ItemSO> inventory = new List<ItemSO>();
+    public List<ItemSO> inventory =  new List<ItemSO>();
+    public int inventorySize = 10;
+
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void AddItem(ItemSO item)
+    public bool AddItem(ItemSO item)
     {
-        inventory.Add(item);
-        SlotSettingManager.Instance.Setting();
+        if (item != null && InventorySizeCheck())
+        {
+            inventory.Add(item);
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("인벤토리에 추가할 아이템의 정보가 없습니다");
+        }
+        return false;
     }
 
     public void RemoveItem(ItemSO item)
     {
-        inventory.Remove(item);
-        SlotSettingManager.Instance.Setting();
+        if (inventory.Contains(item))
+        {
+            inventory.Remove(item);
+        }
+        else
+        {
+            Debug.LogWarning("아이템의 정보가 인벤토리에 없습니다");
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public bool InventorySizeCheck()
     {
-        if (collision.gameObject.tag == "Item")
+        if (inventory.Count < inventorySize)
         {
-            FieldItem item = collision.GetComponent<FieldItem>();
-            inventory.Add(item.curItem);
-            item.CallDestroy();
-            SlotSettingManager.Instance.Setting();
+            return true;
         }
+        return false;
     }
 }

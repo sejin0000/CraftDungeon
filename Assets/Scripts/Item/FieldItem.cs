@@ -5,27 +5,11 @@ using UnityEngine;
 public class FieldItem : MonoBehaviour
 {
     public ItemSO curItem;
+    private SpriteRenderer icon;
 
-    public FieldItem(ItemSO item)
+    private void Awake()
     {
-        curItem = item;
-        GetComponentInChildren<SpriteRenderer>().sprite = curItem.sprite;
-    }
-
-    private void Start()
-    {
-        if (curItem != null)
-        {
-            GetComponentInChildren<SpriteRenderer>().sprite = curItem.sprite;
-        }
-        else
-        {
-            Debug.LogWarning("curItem이 비어있습니다");
-        }
-    }
-
-    public void CallDestroy()
-    {
-        Destroy(gameObject);
+        icon = GetComponentInChildren<SpriteRenderer>();
+        icon.sprite = curItem.sprite;
     }
 }
