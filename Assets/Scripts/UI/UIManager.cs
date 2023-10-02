@@ -1,17 +1,28 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+
+    public GameObject infoPanel;
+
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private static UIManager _instance = new UIManager();
 
-    public static UIManager Instance
+    public static UIManager instance
     {
         get
         {
             return _instance;
         }
     }
-
     private Stack<UIPopup> popups = new Stack<UIPopup>();
 
     private UIPopup ShowPopup(string popupname)
@@ -47,7 +58,7 @@ public class UIManager : MonoBehaviour
 
     public void ClosAllPopup()
     {
-        while(popups.Count > 0)
+        while (popups.Count > 0)
         {
             Destroy(popups.Pop().gameObject);
         }

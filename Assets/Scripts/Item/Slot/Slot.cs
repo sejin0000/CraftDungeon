@@ -15,6 +15,6 @@ public class Slot : MonoBehaviour
 
     public void OpenInfo()
     {
-        UiManager.instance.infoPanel.GetComponent<InfoPanel>().OpenInfo(this);
+        UIManager.Instance.infoPanel.GetComponent<InfoPanel>().OpenInfo(this);
     }
 }

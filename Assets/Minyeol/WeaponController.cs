@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.instance.player;
+        player = GameManager.Instance.player;
         //weapon = transform.GetChild(0).GetComponent<Weapon>();
         weapon = GetComponentInChildren<Weapon>();
         speed = weapon.weaponData.Speed;
