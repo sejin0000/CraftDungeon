@@ -153,17 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapGenerationData: {fileID: 11400000, guid: 4034fd880faad0342bc55238d191a636, type: 2}
-  minRoomCount: 0
-  maxRoomCount: 0
   loadedRooms: []
-  _roomPrefabs:
-    _keys:
-    - _key: Stage1_Normal1
-      _value: {fileID: 2193760885522026730, guid: 3369ad6031d0755469eaeb7acdccc4ff, type: 3}
-    - _key: Stage1_Normal2
-      _value: {fileID: 7414086458980027706, guid: 5647f527c8d46c44e988ec513d435aa1, type: 3}
-    - _key: Stage1_Boss
-      _value: {fileID: 1647900132910520903, guid: b3eb65bc6b417dc4086a05d1da81e5e1, type: 3}
 --- !u!4 &50846075
 Transform:
   m_ObjectHideFlags: 0
@@ -209,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFollow: {fileID: 1907959451}
+  player: {fileID: 0}
 --- !u!4 &887465123
 Transform:
   m_ObjectHideFlags: 0
@@ -251,7 +242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5628018141983903106, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.561
       objectReference: {fileID: 0}
     - target: {fileID: 5628018141983903106, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
       propertyPath: m_LocalPosition.z

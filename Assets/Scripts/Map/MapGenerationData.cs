@@ -1,3 +1,4 @@
+using NativeSerializableDictionary;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,4 +9,6 @@ public class MapGenerationData : ScriptableObject
     public int numberOfCrawlers;
     public int iterationMin;
     public int iterationMax;
+
+    public SerializableDictionary<string, GameObject> roomPrefabs = new SerializableDictionary<string, GameObject>();
 }
