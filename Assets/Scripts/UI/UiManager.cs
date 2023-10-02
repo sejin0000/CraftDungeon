@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -7,20 +8,20 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     public GameObject infoPanel;
-
-
+    public GameObject InvenPanel;
+    public Canvas canvas;
 
     private void Awake()
     {
         Instance = this;
+        InvenPanel.SetActive(false);
     }
-    private static UIManager _instance = new UIManager();
 
     public static UIManager instance
     {
         get
         {
-            return _instance;
+            return Instance;
         }
     }
     private Stack<UIPopup> popups = new Stack<UIPopup>();
@@ -72,5 +73,18 @@ public class UIManager : MonoBehaviour
     public UIPopup GetPopup()
     {
         return popups.Peek();
+    }
+
+    public void OpemCloseInventory()
+    {
+
+        if(InvenPanel.activeSelf)
+        {
+            InvenPanel.SetActive(false);
+        }
+        else
+        {
+            InvenPanel.SetActive(true);
+        }
     }
 }

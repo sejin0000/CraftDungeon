@@ -15,7 +15,7 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDr
 
     private void Awake()
     {
-        canvas = FindObjectOfType<Canvas>().transform;   // 필요에 따라 수정 필요
+        canvas = UIManager.Instance.canvas.transform;   // 필요에 따라 수정 필요
         rect = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
