@@ -13,4 +13,9 @@ namespace EnumManager
     {
         Left, Right, Top, Bottom
     }
+
+    public enum Stage
+    {
+        Stage1
+    }
 }

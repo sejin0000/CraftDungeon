@@ -64,6 +64,9 @@ public class MapCreator : Singleton<MapCreator>
 
     private RoomInfo _currentLoadRoomData;
 
+    private bool isSpawnedBossRoom;
+    private bool isUpdatedRooms;
+
     [SerializeField]
     private SerializableDictionary<string, GameObject> _roomPrefabs = new SerializableDictionary<string, GameObject>();
 
@@ -75,39 +78,61 @@ public class MapCreator : Singleton<MapCreator>
 
     private void SpawnRooms(IEnumerable<Vector2> rooms)
     {
-        LoadRoom(new RoomInfo("Test", new Vector2(0, 0)));
+        string stage = "Stage1";
 
         foreach(Vector2 roomLocation in rooms)
         {
+            if(roomLocation == Vector2.zero)
+            {
+                LoadRoom(new RoomInfo(string.Concat(stage, "_Normal1"), Vector2.zero));
+
+                // 테스트용
+                GameManager.Instance.cameraFollow.SetTarget(loadedRooms[0].transform);
+
+                continue;
+            }
+
+            string roomNum = string.Concat("_Normal", Random.Range(1, _roomPrefabs.Count));
+            string roomName = string.Concat(stage, roomNum);
+
+            Debug.Log(roomName);
+
             if ((roomLocation == mapRooms[mapRooms.Count - 1]) && (roomLocation != Vector2.zero))
             {
-                LoadRoom(new RoomInfo("End", new Vector2(roomLocation.x, roomLocation.y)));
+                LoadRoom(new RoomInfo(string.Concat(stage, "_Boss"), new Vector2(roomLocation.x, roomLocation.y)));
             }
             else
             {
-                LoadRoom(new RoomInfo("Test", new Vector2(roomLocation.x, roomLocation.y)));
+                LoadRoom(new RoomInfo(roomName, new Vector2(roomLocation.x, roomLocation.y)));
             }
         }
+
+        RemoveRoomDoor();
     }
 
     public void LoadRoom(RoomInfo newRoom)
     {
-        if (DoesRoomExist(newRoom.position))
-            return;
-
         Room room = Instantiate(_roomPrefabs[newRoom.name]).GetComponent<Room>();
         room.roomPosition = newRoom.position;
         room.transform.position = new Vector3(newRoom.position.x * room.width, newRoom.position.y * room.height);
 
-        room.RemoveUnconnectedDoors();
+        //room.RemoveUnconnectedDoors();
 
         loadedRooms.Add(room);
+    }
+
+    public void RemoveRoomDoor()
+    {
+        foreach(Room room in loadedRooms)
+        {
+            room.RemoveUnconnectedDoors();
+        }
     }
 
     // 좌표로 룸이 있는지 확인
     public bool DoesRoomExist(Vector2 position)
     {
-        return loadedRooms.Find(room => room.roomPosition == position) != null;
+        return mapRooms.Find(roomPos => roomPos == position) != null;
     }
 
     public Room FindRoom(Vector2 position)
