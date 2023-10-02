@@ -25,3 +25,5 @@ MonoBehaviour:
       _value: {fileID: 1647900132910520903, guid: b3eb65bc6b417dc4086a05d1da81e5e1, type: 3}
     - _key: Stage1_Bonus
       _value: {fileID: 4280773946093064345, guid: 5c2d88486b1f62f4fbb8d94d4e2c3d34, type: 3}
+    - _key: Stage1_Shop
+      _value: {fileID: 3718294505222425078, guid: 801a51f8c42264946bd6fdc15ccc7797, type: 3}

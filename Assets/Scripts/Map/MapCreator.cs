@@ -5,8 +5,40 @@ using NativeSerializableDictionary;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 
-public class MapCreator : Singleton<MapCreator>
+public class MapCreator : MonoBehaviour
 {
+    private static MapCreator instance = null;
+
+    void Awake()
+    {
+        if (null == instance)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public static MapCreator Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
+
+
+    [SerializeField]
+    private MapCrawler mapCrawler;
+
     private const float BONUS_ROOM_RATE = 15f;
 
     [SerializeField]
@@ -29,7 +61,7 @@ public class MapCreator : Singleton<MapCreator>
     */
     private void Start()
     {
-        mapRooms = MapCrawler.Instance.GenerateMap(_mapGenerationData);
+        mapRooms = mapCrawler.GenerateMap(_mapGenerationData);
         SpawnRooms(mapRooms);
     }
 
@@ -50,24 +82,26 @@ public class MapCreator : Singleton<MapCreator>
                 continue;
             }
 
-            string roomNum = string.Concat("_Normal", Random.Range(1, _mapGenerationData.roomPrefabs.Count-1));
+            string roomNum = string.Concat("_Normal", Random.Range(1, _mapGenerationData.roomPrefabs.Count-2));
             string roomName = string.Concat(stage, roomNum);
 
             if ((roomLocation == mapRooms[mapRooms.Count - 1]) && (roomLocation != Vector2.zero))
             {
-                Debug.Log(string.Concat(stage, "_Boss"));
                 LoadRoom(new RoomInfo(string.Concat(stage, "_Boss"), roomLocation));
+            }
+            else if((roomLocation == mapRooms[mapRooms.Count - 2]) && (roomLocation != Vector2.zero))
+            {
+                //임시로 보스방 근처에 생성되게 했습니다
+                LoadRoom(new RoomInfo(string.Concat(stage, "_Shop"), roomLocation));
             }
             else
             {
                 if (Gacha(BONUS_ROOM_RATE))
                 {
-                    Debug.Log(string.Concat(stage, "_Bonus"));
                     LoadRoom(new RoomInfo(string.Concat(stage, "_Bonus"), roomLocation));
                 }
                 else
                 {
-                    Debug.Log(roomName);
                     LoadRoom(new RoomInfo(roomName, roomLocation));
                 }
             }
