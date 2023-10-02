@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65adc042106f9514485c4f3d9b1d54ce, type: 3}
+  m_Name: Pick
+  m_EditorClassIdentifier: 
+  name: "\uACE1\uAD2D\uC774"
+  sprite: {fileID: 278488650, guid: 9e41a8270d6905e49862c26c78751e6f, type: 3}
+  type: 0
+  power: 10
+  explanation: "\uAD11\uBB3C\uC744 \uCE90\uAE30 \uC801\uD569\uD558\uB2E4"

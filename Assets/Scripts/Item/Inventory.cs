@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
         if (item != null && InventorySizeCheck())
         {
             inventory.Add(item);
+            SlotSetting.Instance.AddInventory(item);
             return true;
         }
         else
