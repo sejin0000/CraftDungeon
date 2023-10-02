@@ -15,4 +15,4 @@ MonoBehaviour:
   weaponName: Sword
   damage: 3
   speed: 1
-  weaponSprite: {fileID: -1343057984, guid: 3af78b5a777788647bea14f8b543d40c, type: 3}
+  weaponSprite: {fileID: -354488020, guid: 9e41a8270d6905e49862c26c78751e6f, type: 3}
