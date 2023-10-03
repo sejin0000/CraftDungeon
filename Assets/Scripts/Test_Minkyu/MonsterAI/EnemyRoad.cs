@@ -14,6 +14,7 @@ public class EnemyRoad : MonoBehaviour
     private GameObject Player;
     [SerializeField] private Tilemap Tilemap;
     private bool isDelay;
+    public bool isKnockBack = false;
 
     private Node[,] grid;
 
@@ -82,6 +83,9 @@ public class EnemyRoad : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isKnockBack == true)
+            return;
+
         if (Route.Count == 0)
             return;
 
