@@ -1,19 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private static SoundManager instance = null;
+    public static SoundManager instance = null;
     
     AudioSource[] _audioSources = new AudioSource[(int)Sound.Max];
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
     public enum Sound
     {
-        Bgm,
-        Effect,
+        bgm,
+        effect,
         Max,
     }
+    
     void Awake()
     {
         if (null == instance)
@@ -28,10 +30,9 @@ public class SoundManager : MonoBehaviour
                 GameObject go = new GameObject { name = soundTypes[i] };
                 _audioSources[i] = go.AddComponent<AudioSource>();
                 go.transform.parent = root.transform;
-                GetOrAddAudioClip($"AudioSource/{soundTypes[i]}");
             }
 
-            _audioSources[(int)Sound.Bgm].loop = true;
+            _audioSources[(int)Sound.bgm].loop = true;
         }
         else
         {
@@ -51,7 +52,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    AudioClip GetOrAddAudioClip(string path, Sound type = Sound.Effect)
+    public AudioClip GetOrAddAudioClip(string path, Sound type = Sound.effect)
     {
         if (path.Contains("AudioSource/") == false)
             path = $"AudioSource/{path}"; 
@@ -77,14 +78,14 @@ public class SoundManager : MonoBehaviour
         return audioClip;
     }
 
-    public void Play(AudioClip audioClip, Sound type = Sound.Effect, float pitch = 1.0f)
+    public void Play(AudioClip audioClip, Sound type = Sound.effect, float pitch = 1.0f)
     {
         if (audioClip == null)
             return;
 
-        if (type == Sound.Bgm) // BGM 배경음악 재생
+        if (type == Sound.bgm) // BGM 배경음악 재생
         {
-            AudioSource audioSource = _audioSources[(int)Sound.Bgm];
+            AudioSource audioSource = _audioSources[(int)Sound.bgm];
             if (audioSource.isPlaying)
                 audioSource.Stop();
 
@@ -94,7 +95,7 @@ public class SoundManager : MonoBehaviour
         }
         else // Effect 효과음 재생
         {
-            AudioSource audioSource = _audioSources[(int)Sound.Effect];
+            AudioSource audioSource = _audioSources[(int)Sound.effect];
             audioSource.pitch = pitch;
             audioSource.PlayOneShot(audioClip);
         }
