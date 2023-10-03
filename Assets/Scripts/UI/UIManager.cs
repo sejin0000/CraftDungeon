@@ -5,25 +5,42 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
-
+    private static UIManager instance = null;
+    
     public GameObject infoPanel;
     public GameObject InvenPanel;
     public Canvas canvas;
 
-    private void Awake()
+    void Awake()
     {
-        Instance = this;
+        if (null == instance)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
         InvenPanel.SetActive(false);
     }
 
-    public static UIManager instance
+    public static UIManager Instance
     {
         get
         {
-            return Instance;
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
         }
     }
+
+    public GameObject infoPanel;
+
     private Stack<UIPopup> popups = new Stack<UIPopup>();
 
     private UIPopup ShowPopup(string popupname)
@@ -44,6 +61,7 @@ public class UIManager : MonoBehaviour
     public UIPopup ShowPopupWithPrefab(GameObject prefab, string popupName)
     {
         GameObject obj = Instantiate(prefab);
+        obj.name = popupName;
         return ShowPopup(obj, popupName);
     }
 
@@ -72,7 +90,12 @@ public class UIManager : MonoBehaviour
 
     public UIPopup GetPopup()
     {
-        return popups.Peek();
+        if(popups.Count == 0)
+        {
+            return null;
+        }
+        else
+            return popups.Peek();
     }
 
     public void OpemCloseInventory()

@@ -4,7 +4,7 @@ using UnityEngine;
 using EnumManager;
 using System.Linq;
 
-public class MapCrawler : Singleton<MapCrawler>
+public class MapCrawler : MonoBehaviour
 {
     public List<Vector2> visitedPositions = new List<Vector2> { new Vector2(0, 0) };
 
