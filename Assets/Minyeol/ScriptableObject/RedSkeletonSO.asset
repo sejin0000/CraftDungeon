@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7c957f3f254cc448abfd4ef549f443, type: 3}
   m_Name: RedSkeletonSO
   m_EditorClassIdentifier: 
-  enemyName: Skeleton
-  hp: 20
-  damage: 1
-  moveSpeed: 5
+  enemyName: RedSkeleton
+  hp: 200
+  damage: 5
+  moveSpeed: 0
   enemySprite: {fileID: -1848417891, guid: 3d4471d6c8c2c7c47a670327cc29ea38, type: 3}
-  exp: 15
+  exp: 100

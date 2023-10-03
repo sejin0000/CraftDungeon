@@ -54,6 +54,7 @@ public class Room : MonoBehaviour
         {
             GameObject newEnemy = GameManager.Instance.objectPool.SpawnFromPool(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Count)].enemyData.EnemyName);
             newEnemy.GetComponent<EnemyRoad>().SetTilemap(_roomTilemap);
+            newEnemy.GetComponent<Enemy>().InitEnemyState();
             newEnemy.transform.position = _spawnTrans[i].position;
             newEnemy.transform.SetParent(null, false);
             newEnemy.SetActive(true);

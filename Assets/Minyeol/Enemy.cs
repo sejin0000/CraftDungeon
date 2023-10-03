@@ -33,6 +33,14 @@ public class Enemy : MonoBehaviour // Enmey ������Ʈ�� ���
     private void Start()
     {
         player = GameManager.Instance.player;
+        InitEnemyState();
+    }
+
+    public void InitEnemyState()
+    {
+        spr.color = new Color32(255, 255, 255, 255);
+        this.transform.GetChild(0).transform.rotation = Quaternion.identity;
+        this.GetComponent<EnemyRoad>().isKnockBack = false;
         hp = enemyData.Hp;
         damage = enemyData.Damage;
         moveSpeed = enemyData.MoveSpeed;
