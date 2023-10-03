@@ -39,10 +39,6 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            // 내 체력 깎기(Bullet과 player의 weapon의 데미지 합 만큼)
-        }
         if (collision.gameObject.CompareTag("Weapon"))
         {
 
@@ -77,7 +73,14 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
         if (collision.gameObject.CompareTag("Player") && !player.invincibility)
         {
             player.hp -= damage;
+
+            Vector3 Dirvec = player.transform.position - transform.position;
+            Debug.Log("Hello");
+            player.GetComponent<Rigidbody2D>().AddForce(Dirvec.normalized * 5, ForceMode2D.Impulse);
+
             player.Hit();
+
+
         }
     }
     public void Hit()
@@ -113,4 +116,5 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
         rigid.AddForce(Dirvec.normalized * 3,ForceMode2D.Impulse);
         yield return null;
     }
+
 }

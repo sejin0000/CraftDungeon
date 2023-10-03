@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     public float hp;
     public float unBeatTime = 0.5f;
     public SpriteRenderer[] spr = new SpriteRenderer[3];
+    public Rigidbody2D rigid;
 
     public bool invincibility = false;
 
 
     private void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
         level = player.Level;
         hp = player.Hp;
@@ -44,6 +46,13 @@ public class PlayerController : MonoBehaviour
     {
         EffectManager.instance.effectOn(transform);
         StartCoroutine("UnBeatTime");
+    }
+    public void KnockBack(Vector3 enemyPos)
+    {
+        Vector3 Dirvec = transform.position - enemyPos;
+
+        Debug.Log("Hello");
+        rigid.AddForce(Dirvec.normalized * 500, ForceMode2D.Impulse);
     }
 
     IEnumerator UnBeatTime() 
