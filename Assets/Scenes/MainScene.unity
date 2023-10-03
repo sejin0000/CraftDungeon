@@ -719,6 +719,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698546646}
   m_CullTransparentMesh: 1
+--- !u!114 &706352196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5302638987541925584, guid: ad2e372e3ed2ab940a433287e96f7911, type: 3}
+  m_PrefabInstance: {fileID: 1267452816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a8767f3979ca04782efc60a7a51470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &720614995
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,6 +3061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2112883448}
   - component: {fileID: 2112883447}
+  - component: {fileID: 2112883449}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3069,12 +3081,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35a60776516d044e8e5df54acf1c1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 0}
-  player: {fileID: 0}
+  objectPool: {fileID: 1219783337}
+  player: {fileID: 706352196}
   cameraFollow: {fileID: 1907959451}
   gameUICanvasTrans: {fileID: 1547818656}
   currentStage: 0
   currentRoom: {fileID: 0}
+  currentRoomClearPoint: 0
   currentShopData: {fileID: 0}
 --- !u!4 &2112883448
 Transform:
@@ -3092,3 +3105,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2112883449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112883446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220501f14224bd64c8d95558c5a542bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 3467788161582654429, guid: 88d9e1b172fd5c34b89a801110c9ab86, type: 3}
