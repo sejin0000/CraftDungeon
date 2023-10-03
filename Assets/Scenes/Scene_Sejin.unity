@@ -3120,8 +3120,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423940003}
-  - component: {fileID: 1423940004}
   - component: {fileID: 1423940005}
+  - component: {fileID: 1423940006}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -3144,21 +3144,6 @@ Transform:
   m_Father: {fileID: 1860457508}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1423940004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423940002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4aaa86ad141fad43bb60a7e89a4e49d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  infoPanel: {fileID: 468572853}
-  InvenPanel: {fileID: 1191743043}
-  canvas: {fileID: 1191743046}
 --- !u!114 &1423940005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3174,6 +3159,21 @@ MonoBehaviour:
   InvenRect: {fileID: 1962950189}
   InvenSlot: {fileID: 3228664705969731425, guid: 05fe30e17d40ebf42bfac5520db5f8a4, type: 3}
   slot: {fileID: 6110055047219746210, guid: 322fd3225216a704482106c977deff21, type: 3}
+--- !u!114 &1423940006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423940002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b59d0b53a26c7458367bcc961e3ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoPanel: {fileID: 468572853}
+  InvenPanel: {fileID: 265786235}
+  canvas: {fileID: 1191743046}
 --- !u!1 &1481946195
 GameObject:
   m_ObjectHideFlags: 0
@@ -3994,6 +3994,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1513713638}
   cameraFollow: {fileID: 0}
+  gameUICanvasTrans: {fileID: 0}
+  currentStage: 0
+  currentShopData: {fileID: 0}
 --- !u!4 &1860457508
 Transform:
   m_ObjectHideFlags: 0
