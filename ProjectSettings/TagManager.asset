@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Item
   - Bullet
+  - Weapon
+  - Enemy
+  - Sound
   layers:
   - Default
   - TransparentFX
