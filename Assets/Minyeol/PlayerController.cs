@@ -74,4 +74,11 @@ public class PlayerController : MonoBehaviour
         }
         yield return null;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            rigid.AddForce(new Vector2(1,1) * 500, ForceMode2D.Impulse);
+        }
+    }
 }

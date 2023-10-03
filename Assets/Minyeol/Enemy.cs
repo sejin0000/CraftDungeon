@@ -76,7 +76,8 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
 
             Vector3 Dirvec = player.transform.position - transform.position;
             Debug.Log("Hello");
-            player.GetComponent<Rigidbody2D>().AddForce(Dirvec.normalized * 5, ForceMode2D.Impulse);
+            //player.GetComponent<Rigidbody2D>().AddForce(Dirvec.normalized * 5, ForceMode2D.Impulse);
+            player.GetComponent<Rigidbody2D>().AddForce(new Vector2(1,1) * 50, ForceMode2D.Impulse);
 
             player.Hit();
 
