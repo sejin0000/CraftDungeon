@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class EnemyRoad : MonoBehaviour
 {
@@ -74,7 +75,7 @@ public class EnemyRoad : MonoBehaviour
         if (isDelay == false)
         {
             isDelay = true;
-            GetPosition();
+            //GetPosition();
             PathFinding();
             Route = GetPath(Enemy.transform.position, Player.transform.position);
             StartCoroutine(CallPosPerSecond());
@@ -180,6 +181,7 @@ public class EnemyRoad : MonoBehaviour
         Vector3 startDiffPos = GetDiffBetweenGridNPos(startPos);
         Vector3 endPos = Player.transform.position;
         Vector3 endDiffPos = GetDiffBetweenGridNPos(endPos);
+
         List<Node> path = GetPath(startPos, endPos);
         if (path != null)
         {
@@ -269,7 +271,25 @@ public class EnemyRoad : MonoBehaviour
         int y = cellPos.y + Mathf.Abs(Tilemap.cellBounds.yMin);
         int x = cellPos.x + Mathf.Abs(Tilemap.cellBounds.xMin);
 
-        Node node = grid[y, x];
+        int xidx = x;
+        int yidx = y;
+        if (x < Mathf.Abs(Tilemap.cellBounds.xMin))
+        {
+            xidx = Mathf.Abs(Tilemap.cellBounds.xMin);
+        }
+        if (x > Mathf.Abs(Tilemap.cellBounds.xMax))
+        {
+            xidx = Mathf.Abs(Tilemap.cellBounds.xMax);
+        }
+        if (y < Mathf.Abs(Tilemap.cellBounds.yMin))
+        {
+            yidx = Mathf.Abs(Tilemap.cellBounds.yMin);
+        }
+        if (y > Mathf.Abs(Tilemap.cellBounds.yMax))
+        {
+            yidx = Mathf.Abs(Tilemap.cellBounds.yMax);
+        }
+        Node node = grid[yidx, xidx];
         return node;
     }
 
