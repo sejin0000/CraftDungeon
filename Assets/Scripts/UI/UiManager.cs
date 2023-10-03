@@ -11,6 +11,18 @@ public class UIManager : MonoBehaviour
     public GameObject InvenPanel;
     public Canvas canvas;
 
+    public void OpenCloseInventory()
+    {
+        if(InvenPanel.activeSelf)
+        {
+            InvenPanel.SetActive(false);
+        }
+        else
+        {
+            InvenPanel.SetActive(true);
+        }
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -73,18 +85,5 @@ public class UIManager : MonoBehaviour
     public UIPopup GetPopup()
     {
         return popups.Peek();
-    }
-
-    public void OpemCloseInventory()
-    {
-
-        if(InvenPanel.activeSelf)
-        {
-            InvenPanel.SetActive(false);
-        }
-        else
-        {
-            InvenPanel.SetActive(true);
-        }
     }
 }
