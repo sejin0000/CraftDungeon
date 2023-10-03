@@ -12,12 +12,13 @@ public class Boss : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine("Think");
+        
     }
 
     void Start()
     {
         target = GameManager.Instance.player.transform;
+        StartCoroutine("Think");
     }
 
     // Update is called once per frame
@@ -30,24 +31,7 @@ public class Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
 
-        int ranAction = Random.Range(0, 5);
-        switch(ranAction)
-        {
-            case 0:
-            case 1:
-                StartCoroutine("Pattern1");
-                break;
-            case 2:
-            case 3:
-                StartCoroutine("Pattern2");
-
-                break;
-            case 4:
-                StartCoroutine("Pattern3");
-
-                break;
-
-        }
+        StartCoroutine("Pattern1");
 
     }
 

@@ -20,7 +20,7 @@ public class BossBomb : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rigid.MovePosition(transform.position + vec * 1f * Time.fixedDeltaTime);    
+        rigid.MovePosition(transform.position + vec * 2f * Time.fixedDeltaTime);    
     }
 
     private void Update()
