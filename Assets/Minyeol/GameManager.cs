@@ -52,8 +52,13 @@ public class GameManager : MonoBehaviour
         // Test
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            if (UIManager.Instance.GetPopup().name == "UIShop")
-                return;
+            // 중복 방지
+            if(UIManager.Instance.GetPopup() != null)
+            {
+                if (UIManager.Instance.GetPopup().GetType() == typeof(UIShop))
+                    return;
+            }
+
             UIShop shopPopup = UIManager.Instance.ShowPopup<UIShop>();
             shopPopup.transform.SetParent(GameManager.Instance.gameUICanvasTrans, false);
         }

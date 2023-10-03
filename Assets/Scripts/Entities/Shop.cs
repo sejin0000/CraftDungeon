@@ -18,6 +18,12 @@ public class Shop : MonoBehaviour
     }
     private void OpenShop()
     {
+        if (UIManager.Instance.GetPopup() != null)
+        {
+            if (UIManager.Instance.GetPopup().GetType() == typeof(UIShop))
+                return;
+        }
+
         UIShop shopPopup = UIManager.Instance.ShowPopup<UIShop>();
         shopPopup.transform.SetParent(GameManager.Instance.gameUICanvasTrans, false);
     }

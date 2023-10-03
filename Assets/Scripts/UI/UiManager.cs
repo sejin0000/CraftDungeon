@@ -83,6 +83,11 @@ public class UIManager : MonoBehaviour
 
     public UIPopup GetPopup()
     {
-        return popups.Peek();
+        if(popups.Count == 0)
+        {
+            return null;
+        }
+        else
+            return popups.Peek();
     }
 }
