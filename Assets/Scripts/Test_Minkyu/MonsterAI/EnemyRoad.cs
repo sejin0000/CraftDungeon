@@ -99,6 +99,7 @@ public class EnemyRoad : MonoBehaviour
             // 공격
             Debug.Log("Attack");
             animator.SetTrigger(Attack);
+            _rigidbody.AddForce(Player.transform.position - Enemy.transform.position);
         }
         else
         {
@@ -327,6 +328,12 @@ public class EnemyRoad : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         isDelay = false;
+    }
+
+    IEnumerator WaitAfterAttack()
+    {
+        yield return new WaitForSeconds(1.5f);
+
     }
 
     // 콜라이더 관련해서, 부딪히면 정지하는 메서드 추가
