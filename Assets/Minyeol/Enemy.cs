@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour // Enmey ¿ÀºêÁ§Æ®°¡ °¡Áö´Â ½ºÅ©¸³Æ®
+public class Enemy : MonoBehaviour // Enmey ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®
 {
     public EnemyData enemyData;
     public EnemyRoad enemyRoad;
@@ -17,9 +17,6 @@ public class Enemy : MonoBehaviour // Enmey ¿ÀºêÁ§Æ®°¡ °¡Áö´Â ½ºÅ©¸³Æ®
     [SerializeField]
     private int exp;
     public float unBeatTime = 0.01f;
-
-
-
 
     public SpriteRenderer spr;
     public Rigidbody2D rigid;
@@ -50,18 +47,14 @@ public class Enemy : MonoBehaviour // Enmey ¿ÀºêÁ§Æ®°¡ °¡Áö´Â ½ºÅ©¸³Æ®
             EffectManager.instance.effectOn(collision.transform);
             KnockBack();
             Hit();
-            Debug.Log("ÇöÀç" + hp);
 
             ItemSO item = collision.gameObject.GetComponent<EquippedItem>().curItem;
             hp -= item.power;
-
-            // ³» Ã¼·Â ±ð±â(playerÀÇ weapon µ¥¹ÌÁö¸¸Å­)
-            Debug.Log("¹«±â µ¥¹ÌÁö" + item.power);
-            Debug.Log("ÇÇ°Ý" + hp);
             
             if (hp <= 0)
             {
                 this.gameObject.SetActive(false);
+                GameManager.Instance.currentRoomClearPoint -= 1;
                 GameManager.Instance.player.AddExp(exp);
             }
         }

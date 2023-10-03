@@ -56,6 +56,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (!currentRoom.isClear)
+        {
+            if (currentRoomClearPoint == 0) 
+            {
+                currentRoom.isClear = true;
+            }
+        }
         // Test
         if(Input.GetKeyDown(KeyCode.Q))
         {
