@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
     private int exp;
     public float unBeatTime = 0.01f;
 
-
     public SpriteRenderer spr;
     public Rigidbody2D rigid;
 
@@ -58,6 +57,7 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
             if (hp <= 0)
             {
                 this.gameObject.SetActive(false);
+                GameManager.Instance.currentRoomClearPoint -= 1;
                 GameManager.Instance.player.AddExp(exp);
             }
         }

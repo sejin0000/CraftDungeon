@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4680568734996611329}
   - component: {fileID: 2334042556195748379}
   - component: {fileID: 5098049770395280495}
+  - component: {fileID: -3819717511940995667}
   m_Layer: 0
   m_Name: Skeleton_Prefab
   m_TagString: Untagged
@@ -126,10 +127,7 @@ MonoBehaviour:
   moveSpeed: 0
   exp: 0
   unBeatTime: 0.01
-  spr:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spr: {fileID: 0}
   rigid: {fileID: 0}
   invincibility: 0
 --- !u!70 &5098049770395280495
@@ -167,6 +165,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.1}
   m_Size: {x: 0.5, y: 0.8}
   m_Direction: 0
+--- !u!114 &-3819717511940995667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839055597228276784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7582572832aef6419afcc4413581a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyData: {fileID: 11400000, guid: 99cbfd4b9240723479fb66c6b6fa5192, type: 2}
+  Tilemap: {fileID: 0}
 --- !u!1 &6117937684766404405
 GameObject:
   m_ObjectHideFlags: 0
