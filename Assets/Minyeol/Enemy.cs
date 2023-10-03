@@ -26,8 +26,8 @@ public class Enemy : MonoBehaviour // Enmey ������Ʈ�� ���
 
     private void Awake()
     {
-        rigid = GetComponent <Rigidbody2D>();
-        spr = GetComponentInChildren <SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
+        spr = GetComponentInChildren<SpriteRenderer>();
         enemyRoad = GetComponent<EnemyRoad>();
     }
     private void Start()
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour // Enmey ������Ʈ�� ���
 
             ItemSO item = collision.gameObject.GetComponent<EquippedItem>().curItem;
             hp -= item.power;
-            
+
             if (hp <= 0)
             {
                 this.gameObject.SetActive(false);
@@ -85,11 +85,20 @@ public class Enemy : MonoBehaviour // Enmey ������Ʈ�� ���
             Debug.Log("Hello");
             player.GetComponent<Rigidbody2D>().AddForce(Dirvec.normalized * 3, ForceMode2D.Impulse);
 
-
             player.Hit();
 
 
+
+
+            if (player.hp <= 0)
+            {
+                player.gameObject.SetActive(false);
+                GameUIManager.Instance.GameOver();
+
+            }
+
         }
+
     }
     public void Hit()
     {

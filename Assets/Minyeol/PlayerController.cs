@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour
         curExp = player.CurExp;
         maxExp = player.MaxExp;
     }
+    private void Update()
+    {
 
+    }
     public void AddExp(int exp)
     {
         curExp += exp;
@@ -42,13 +45,18 @@ public class PlayerController : MonoBehaviour
         maxExp += 20;
         hp = player.Hp;
     }
+    public void Dead()
+    {
+        StartCoroutine(PlayerDead());
+    }
+
     public void Hit()
     {
         EffectManager.instance.effectOn(transform);
         StartCoroutine("UnBeatTime");
     }
 
-    IEnumerator UnBeatTime() 
+    IEnumerator UnBeatTime()
     {
 
         foreach (var _spr in spr)
@@ -66,5 +74,12 @@ public class PlayerController : MonoBehaviour
             invincibility = false;
         }
         yield return null;
+    }
+
+    IEnumerator PlayerDead()
+    {
+        GameUIManager.Instance.GameOver();
+        yield return null;
+
     }
 }

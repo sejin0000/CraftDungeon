@@ -37,6 +37,8 @@ public class GameUIManager : MonoBehaviour
     public GameObject infoPanel;
     public GameObject InvenPanel;
     public Canvas canvas;
+    public GameObject gameOverPanel;
+    public GameSceneManager gameSceneManager;
 
     public void OpenCloseInventory()
     {
@@ -49,5 +51,17 @@ public class GameUIManager : MonoBehaviour
         {
             InvenPanel.SetActive(true);
         }
+    }
+    public void GameOver()
+    {
+        StartCoroutine(GameOverCo());
+    }
+    IEnumerator GameOverCo()
+    {
+        yield return new WaitForSeconds(1f);
+        gameOverPanel.SetActive(true);
+
+        gameSceneManager.MoveScene(0);
+        yield return null;
     }
 }
