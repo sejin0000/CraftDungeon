@@ -78,6 +78,7 @@ public class MapCreator : MonoBehaviour
 
                 // 테스트용
                 GameManager.Instance.cameraFollow.SetTarget(loadedRooms[0].transform);
+                loadedRooms[0].isClear = true;
 
                 continue;
             }

@@ -5,6 +5,14 @@ using EnumManager;
 
 public class Room : MonoBehaviour
 {
+    [HideInInspector]
+    public bool isClear = false;
+
+    [SerializeField]
+    private List<Enemy> _enemyPrefabs = new List<Enemy>();
+    [SerializeField]
+    private List<Transform> _spawnTrans = new List<Transform>();
+
     public int width;
     public int height;
 
@@ -23,6 +31,19 @@ public class Room : MonoBehaviour
         {
             Debug.Log("No Instance MapCreator.cs");
             return;
+        }
+    }
+
+    public void SpawnEnemy()
+    {
+        if (isClear)
+            return;
+
+        for(int i = 0; i < _spawnTrans.Count; i++)
+        {
+            GameObject newEnemy;
+            newEnemy = GameManager.Instance.objectPool.SpawnFromPool(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Count)].enemyData.EnemyName);
+            newEnemy.transform.SetParent(null, false);
         }
     }
 

@@ -18,4 +18,9 @@ namespace EnumManager
     {
         Stage1
     }
+
+    public enum Monster
+    {
+        Skeleton, Lizard
+    }
 }
