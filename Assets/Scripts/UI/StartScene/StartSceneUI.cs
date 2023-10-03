@@ -8,13 +8,10 @@ public class StartSceneUI : MonoBehaviour
 {
     public Button startBtn;
 
-    private void Start()
-    {
-        startBtn.onClick.AddListener(StartBtnClicked);
-    }
 
-    private void StartBtnClicked()
+
+    public void StartBtnClicked()
     {
-        SceneManager.LoadSceneAsync("BaseCamp");
+        SceneManager.LoadSceneAsync("MainScene");
     }
 }
