@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIShopItem : MonoBehaviour
 {
+    public Image curitem;
     public Image itemImg;
     public Text itemName;
     public Text itemDescription;
