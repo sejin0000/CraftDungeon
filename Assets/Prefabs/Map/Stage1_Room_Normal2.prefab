@@ -6559,6 +6559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45e19bf246132d439013d75b53c69cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _roomTilemap: {fileID: 1063440190591488556}
   isClear: 0
   _enemyPrefabs:
   - {fileID: 231002492283117824, guid: 5ee2cd169d082cc4ab6d0b46c82c19bb, type: 3}

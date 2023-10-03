@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7c957f3f254cc448abfd4ef549f443, type: 3}
   m_Name: LizardTest
   m_EditorClassIdentifier: 
-  enemyName: Skeleton
+  enemyName: Lizard
   hp: 20
   damage: 1
   moveSpeed: 5

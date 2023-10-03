@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EnumManager;
+using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField]
+    private Tilemap _roomTilemap;
+
     [HideInInspector]
     public bool isClear = false;
 
@@ -41,9 +45,8 @@ public class Room : MonoBehaviour
 
         for(int i = 0; i < _spawnTrans.Count; i++)
         {
-            GameObject newEnemy;
-            Debug.Log(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Count)].enemyData.EnemyName);
-            newEnemy = GameManager.Instance.objectPool.SpawnFromPool(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Count)].enemyData.EnemyName);
+            GameObject newEnemy = GameManager.Instance.objectPool.SpawnFromPool(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Count)].enemyData.EnemyName);
+            newEnemy.GetComponent<EnemyRoad>().SetTilemap(_roomTilemap);
             newEnemy.transform.position = _spawnTrans[i].position;
             newEnemy.transform.SetParent(null, false);
             newEnemy.SetActive(true);
