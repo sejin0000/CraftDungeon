@@ -167,15 +167,23 @@ public class EnemyRoad : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    Debug.DrawLine(startPos, new Vector3(path[i].xPos, path[i].yPos) - startDiffPos, Color.red, 5f);
+                    Vector3Int cellPos = Tilemap.WorldToCell(new Vector3(path[i].xPos, path[i].yPos));
+                    Vector3 cellCenterPos = Tilemap.GetCellCenterWorld(cellPos) - Tilemap.cellGap / 2;
+                    Debug.DrawLine(startPos, cellCenterPos - startDiffPos, Color.red, 5f);
                 }
                 if (i == path.Count - 2)
                 {
-                    Debug.DrawLine(new Vector3(path[i].xPos, path[i].yPos) - startDiffPos, endPos, Color.red, 5f);
+                    Vector3Int cellPos = Tilemap.WorldToCell(new Vector3(path[i].xPos, path[i].yPos));
+                    Vector3 cellCenterPos = Tilemap.GetCellCenterWorld(cellPos) - Tilemap.cellGap / 2;
+                    Debug.DrawLine(cellCenterPos - startDiffPos, endPos, Color.red, 5f);
                 }
                 else
                 {
-                    Debug.DrawLine(new Vector3(path[i].xPos, path[i].yPos) - startDiffPos, new Vector3(path[i + 1].xPos, path[i + 1].yPos) - startDiffPos, Color.red, 5f);
+                    Vector3Int startCellPos = Tilemap.WorldToCell(new Vector3(path[i].xPos, path[i].yPos));
+                    Vector3 startCellCenterPos = Tilemap.GetCellCenterWorld(startCellPos) - Tilemap.cellGap / 2;
+                    Vector3Int endCellPos = Tilemap.WorldToCell(new Vector3(path[i + 1].xPos, path[i + 1].yPos));
+                    Vector3 endCellCenterPos = Tilemap.GetCellCenterWorld(endCellPos) - Tilemap.cellGap / 2;
+                    Debug.DrawLine(startCellCenterPos - startDiffPos, endCellCenterPos - startDiffPos, Color.red, 5f);
                 }
             }
         }
@@ -206,9 +214,19 @@ public class EnemyRoad : MonoBehaviour
                 List<Node> ansPath = new List<Node>();
                 Node ansNode = currentNode;
                 ansPath.Add(ansNode);
-
                 while (ansNode.xIndex != startNode.xIndex || ansNode.yIndex != startNode.yIndex)
                 {
+                    if (Math.Abs(ansNode.xPos - ansNode.parent.xPos) == 1 && Math.Abs(ansNode.yPos - ansNode.parent.yPos) == 1)
+                    {
+                        if (grid[ansNode.parent.yIndex, ansNode.xIndex].isWalkable)
+                        {
+                            ansPath.Add(grid[ansNode.parent.yIndex, ansNode.xIndex]);
+                        }
+                        else
+                        {
+                            ansPath.Add(grid[ansNode.yIndex, ansNode.parent.xIndex]);
+                        }
+                    }
                     ansPath.Add(ansNode.parent);
                     ansNode = ansNode.parent;
                 }
