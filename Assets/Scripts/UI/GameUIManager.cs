@@ -58,8 +58,10 @@ public class GameUIManager : MonoBehaviour
     }
     IEnumerator GameOverCo()
     {
+
         yield return new WaitForSeconds(1f);
         gameOverPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
 
         gameSceneManager.MoveScene(0);
         yield return null;

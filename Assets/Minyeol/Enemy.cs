@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour // Enmey ������Ʈ�� ������ ��ũ��Ʈ
+public class Enemy : MonoBehaviour 
 {
     public EnemyData enemyData;
     public EnemyRoad enemyRoad;
@@ -86,9 +86,6 @@ public class Enemy : MonoBehaviour // Enmey ������Ʈ�� ���
             player.GetComponent<Rigidbody2D>().AddForce(Dirvec.normalized * 3, ForceMode2D.Impulse);
 
             player.Hit();
-
-
-
 
             if (player.hp <= 0)
             {
