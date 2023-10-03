@@ -1226,6 +1226,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179594981}
   m_CullTransparentMesh: 1
+--- !u!1 &1219783335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1219783336}
+  - component: {fileID: 1219783337}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1219783336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219783335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2112883448}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1219783337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219783335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9296111aca9804ebafa14d433913e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Lizard
+    prefab: {fileID: 1187308932684052620, guid: 5ee2cd169d082cc4ab6d0b46c82c19bb, type: 3}
+    size: 5
+  - tag: Skeleton
+    prefab: {fileID: 1839055597228276784, guid: ae043aa017a4a1b42b01e3ad6f780ea0, type: 3}
+    size: 5
 --- !u!1 &1236908094
 GameObject:
   m_ObjectHideFlags: 0
@@ -3018,10 +3069,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35a60776516d044e8e5df54acf1c1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   player: {fileID: 0}
   cameraFollow: {fileID: 1907959451}
   gameUICanvasTrans: {fileID: 1547818656}
   currentStage: 0
+  currentRoom: {fileID: 0}
   currentShopData: {fileID: 0}
 --- !u!4 &2112883448
 Transform:
@@ -3034,7 +3087,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1219783336}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -32,7 +32,7 @@ public class TopDownMovement : MonoBehaviour
         if (!_isMovingCheck)
         {
             _isMovingCheck = true;
-            Debug.Log(CharaecterPos.position);
+            //Debug.Log(CharaecterPos.position);
             StartCoroutine(CallSeconds());
         }
 

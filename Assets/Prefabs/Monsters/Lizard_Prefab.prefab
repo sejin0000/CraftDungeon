@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7582572832aef6419afcc4413581a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyData: {fileID: 11400000, guid: 99cbfd4b9240723479fb66c6b6fa5192, type: 2}
+  EnemyData: {fileID: 11400000, guid: 0323bbdab6b2af44aa6172c33b63ed59, type: 2}
   Tilemap: {fileID: 0}
 --- !u!50 &498940005604858590
 Rigidbody2D:
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4daa5d1e65a9e6f40bfebf62b3e57128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 3a3858aad76002d4c9b7d3fbd6ce2136, type: 2}
+  enemyData: {fileID: 11400000, guid: 0323bbdab6b2af44aa6172c33b63ed59, type: 2}
   hp: 0
   damage: 0
   moveSpeed: 0

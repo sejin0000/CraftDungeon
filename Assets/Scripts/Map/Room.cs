@@ -42,8 +42,11 @@ public class Room : MonoBehaviour
         for(int i = 0; i < _spawnTrans.Count; i++)
         {
             GameObject newEnemy;
+            Debug.Log(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Count)].enemyData.EnemyName);
             newEnemy = GameManager.Instance.objectPool.SpawnFromPool(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Count)].enemyData.EnemyName);
+            newEnemy.transform.position = _spawnTrans[i].position;
             newEnemy.transform.SetParent(null, false);
+            newEnemy.SetActive(true);
         }
     }
 
