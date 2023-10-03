@@ -39,8 +39,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public GameObject infoPanel;
-
     private Stack<UIPopup> popups = new Stack<UIPopup>();
 
     private UIPopup ShowPopup(string popupname)
