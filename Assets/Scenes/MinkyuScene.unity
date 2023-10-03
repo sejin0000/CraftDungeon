@@ -2068,6 +2068,7 @@ GameObject:
   - component: {fileID: 750416322}
   - component: {fileID: 750416321}
   - component: {fileID: 750416320}
+  - component: {fileID: 750416323}
   - component: {fileID: 750416319}
   m_Layer: 0
   m_Name: Skeleton_Prefab
@@ -2178,6 +2179,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &750416323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750416317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4daa5d1e65a9e6f40bfebf62b3e57128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 99cbfd4b9240723479fb66c6b6fa5192, type: 2}
+  hp: 0
+  damage: 0
+  moveSpeed: 0
+  exp: 0
+  unBeatTime: 0.01
+  spr:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rigid: {fileID: 0}
+  invincibility: 0
 --- !u!1 &761427772
 GameObject:
   m_ObjectHideFlags: 0
