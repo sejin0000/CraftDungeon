@@ -30,6 +30,8 @@ public class EnemyRoad : MonoBehaviour
     private static readonly int IsHit = Animator.StringToHash("IsHit");
     private static readonly int Attack = Animator.StringToHash("Attack");
 
+    private bool isStopped = false;
+
     private enum Directions
     {
         Up = 0,
@@ -81,6 +83,9 @@ public class EnemyRoad : MonoBehaviour
     private void FixedUpdate()
     {
         if (Route.Count == 0)
+            return;
+
+        if (isStopped == true)
             return;
 
         float dist = Vector3.Distance(Player.transform.position, Enemy.transform.position);
@@ -312,5 +317,24 @@ public class EnemyRoad : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
         isDelay = false;
+    }
+
+    // 콜라이더 관련해서, 부딪히면 정지하는 메서드 추가
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collision detected");
+        if (collision.gameObject.CompareTag("Player") && !isStopped)
+        {
+            isStopped = true;
+            Debug.Log("Stopeed");
+            _rigidbody.velocity = Vector2.zero;
+            StartCoroutine(ResumeMovementAfterDelay(1.0f));
+        }
+    }
+
+    private IEnumerator ResumeMovementAfterDelay(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        isStopped = false;
     }
 }
