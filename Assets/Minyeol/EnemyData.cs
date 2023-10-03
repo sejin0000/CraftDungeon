@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Enemy Data", menuName = "Scriptable Object/Enemy Data", order = -1)]
@@ -24,4 +25,8 @@ public class EnemyData : ScriptableObject
     [SerializeField] 
     private Sprite enemySprite;
     public Sprite EnemySprite { get {  return enemySprite; } }
+
+    [SerializeField]
+    private int exp;
+    public int Exp { get { return exp; } }
 }

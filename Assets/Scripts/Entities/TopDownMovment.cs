@@ -45,7 +45,7 @@ public class TopDownMovement : MonoBehaviour
 
     private void ApplyMovment(Vector2 direction)
     {
-        direction = direction * 5;
+        direction = direction * GetComponent<Player>().Speed;
 
         _rigidbody.velocity = direction;
     }

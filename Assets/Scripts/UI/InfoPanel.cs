@@ -39,8 +39,8 @@ public class InfoPanel : MonoBehaviour
         }
 
         _power.text = item.power.ToString();
-
-        infoPanel.SetActive(true);
+        _ex.text = item.explanation.ToString();
+    infoPanel.SetActive(true);
 
         _item = item;
         _slot = slot;

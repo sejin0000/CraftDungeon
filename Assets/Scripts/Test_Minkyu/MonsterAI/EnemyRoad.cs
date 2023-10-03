@@ -19,6 +19,11 @@ public class EnemyRoad : MonoBehaviour
     private PriorityQueue OpenedSet;
     private List<Node> ClosedSet;
 
+    private List<Node> Route = new List<Node>();
+
+
+    private Rigidbody2D _rigidbody;
+
     private enum Directions
     {
         Up = 0,
@@ -41,7 +46,10 @@ public class EnemyRoad : MonoBehaviour
         new Vector3(-1, -1, 0),
         new Vector3(1, -1, 0)
     };
-
+    void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
     private void Start()
     {
         CreateGrid();
@@ -55,7 +63,24 @@ public class EnemyRoad : MonoBehaviour
             isDelay = true;
             GetPosition();
             PathFinding();
+            Route = GetPath(Enemy.transform.position, Player.transform.position);
             StartCoroutine(CallPosPerSecond());
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Route.Count == 0)
+            return;
+        
+        if (GetNodeFromPos(Enemy.transform.position) != Route[0])
+        {
+            Vector3 _moveDirection = (new Vector3(Route[0].xPos, Route[0].yPos, transform.position.z) - new Vector3(GetNodeFromPos(Enemy.transform.position).xPos, GetNodeFromPos(Enemy.transform.position).yPos, 0)).normalized;
+            _rigidbody.MovePosition(_rigidbody.position + new Vector2(_moveDirection.x, _moveDirection.y) * 5 * Time.fixedDeltaTime);
+        }
+        else
+        {
+            Route.RemoveAt(0);
         }
     }
     private void GetPosition()

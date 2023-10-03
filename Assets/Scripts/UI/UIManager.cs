@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     private static UIManager instance = null;
+    
+    public GameObject infoPanel;
+    public GameObject InvenPanel;
+    public Canvas canvas;
 
     void Awake()
     {
@@ -18,6 +23,8 @@ public class UIManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        InvenPanel.SetActive(false);
     }
 
     public static UIManager Instance
@@ -89,5 +96,18 @@ public class UIManager : MonoBehaviour
         }
         else
             return popups.Peek();
+    }
+
+    public void OpemCloseInventory()
+    {
+
+        if(InvenPanel.activeSelf)
+        {
+            InvenPanel.SetActive(false);
+        }
+        else
+        {
+            InvenPanel.SetActive(true);
+        }
     }
 }
