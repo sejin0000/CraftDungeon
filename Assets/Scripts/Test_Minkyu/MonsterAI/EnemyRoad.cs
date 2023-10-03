@@ -9,8 +9,9 @@ using UnityEngine.Tilemaps;
 
 public class EnemyRoad : MonoBehaviour
 {
-    [SerializeField] private GameObject Enemy;
-    [SerializeField] private GameObject Player;
+    private GameObject Enemy;
+    [SerializeField] private EnemyData EnemyData;
+    private GameObject Player;
     [SerializeField] private Tilemap Tilemap;
     private bool isDelay;
 
@@ -21,7 +22,7 @@ public class EnemyRoad : MonoBehaviour
 
     private List<Node> Route = new List<Node>();
 
-
+    private Enemy _enemyData;
     private Rigidbody2D _rigidbody;
 
     private enum Directions
@@ -49,6 +50,9 @@ public class EnemyRoad : MonoBehaviour
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        Enemy = this.gameObject;
+        //EnemyData = GetComponent<EnemyData>();
     }
     private void Start()
     {
@@ -72,15 +76,32 @@ public class EnemyRoad : MonoBehaviour
     {
         if (Route.Count == 0)
             return;
-        
-        if (GetNodeFromPos(Enemy.transform.position) != Route[0])
+
+        float dist = Vector3.Distance(Player.transform.position, Enemy.transform.position);
+        if (dist < 1f)
         {
-            Vector3 _moveDirection = (new Vector3(Route[0].xPos, Route[0].yPos, transform.position.z) - new Vector3(GetNodeFromPos(Enemy.transform.position).xPos, GetNodeFromPos(Enemy.transform.position).yPos, 0)).normalized;
-            _rigidbody.MovePosition(_rigidbody.position + new Vector2(_moveDirection.x, _moveDirection.y) * 5 * Time.fixedDeltaTime);
+            // АјАн
+            Debug.Log("Attack");
         }
         else
         {
-            Route.RemoveAt(0);
+            if (Route.Count <= 2)
+            {
+                Vector3 _moveDirection = (Player.transform.position - Enemy.transform.position).normalized;
+                _rigidbody.MovePosition(_rigidbody.position + new Vector2(_moveDirection.x, _moveDirection.y) * EnemyData.MoveSpeed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                if (GetNodeFromPos(Enemy.transform.position) != Route[0])
+                {
+                    Vector3 _moveDirection = (new Vector3(Route[0].xPos, Route[0].yPos, transform.position.z) - new Vector3(GetNodeFromPos(Enemy.transform.position).xPos, GetNodeFromPos(Enemy.transform.position).yPos, 0)).normalized;
+                    _rigidbody.MovePosition(_rigidbody.position + new Vector2(_moveDirection.x, _moveDirection.y) * EnemyData.MoveSpeed * Time.fixedDeltaTime);
+                }
+                else
+                {
+                    Route.RemoveAt(0);
+                }
+            }
         }
     }
     private void GetPosition()
