@@ -2341,7 +2341,7 @@ GameObject:
   - component: {fileID: 7633629515102314980}
   m_Layer: 0
   m_Name: Stage1_Room_Boss
-  m_TagString: Untagged
+  m_TagString: BossRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2376,8 +2376,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roomTilemap: {fileID: 1520629635812927038}
   isClear: 0
-  _enemyPrefabs: []
-  _spawnTrans: []
+  _enemyPrefabs:
+  - {fileID: 5483992760952962729, guid: 3105135266e9f4d4dada7fde48cd93a8, type: 3}
+  _spawnTrans:
+  - {fileID: 7732729336956345690}
   width: 22
   height: 14
   roomPosition: {x: 0, y: 0}
@@ -3329,6 +3331,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3563173775169894406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7732729336956345690}
+  m_Layer: 0
+  m_Name: Spawn1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7732729336956345690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563173775169894406}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2089203634549348372}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3949239317536151150
 GameObject:
   m_ObjectHideFlags: 0
@@ -4055,6 +4088,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.93784136, y: 0.48614073}
   m_EdgeRadius: 0
+--- !u!1 &4674932667197203049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089203634549348372}
+  m_Layer: 0
+  m_Name: SpawnTrans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2089203634549348372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4674932667197203049}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7732729336956345690}
+  m_Father: {fileID: 1347924885308029211}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4773959070865284763
 GameObject:
   m_ObjectHideFlags: 0
@@ -7021,6 +7086,7 @@ Transform:
   - {fileID: 2476547239501405464}
   - {fileID: 5582585988084145893}
   - {fileID: 4235395165603361785}
+  - {fileID: 2089203634549348372}
   - {fileID: 9142958917908856786}
   m_Father: {fileID: 2399221223405082567}
   m_RootOrder: -1

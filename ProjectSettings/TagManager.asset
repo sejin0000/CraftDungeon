@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - Enemy
   - Sound
+  - BossRoom
   layers:
   - Default
   - TransparentFX
