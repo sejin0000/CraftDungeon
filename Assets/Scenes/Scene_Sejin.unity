@@ -1548,7 +1548,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.9824758
+  orthographic size: 4.221064
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3172,7 +3172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPanel: {fileID: 468572853}
-  InvenPanel: {fileID: 265786235}
+  InvenPanel: {fileID: 1191743043}
   canvas: {fileID: 1191743046}
 --- !u!1 &1481946195
 GameObject:
