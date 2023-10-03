@@ -118,6 +118,12 @@ public class EnemyRoad : MonoBehaviour
             }
         }
     }
+
+    public void SetTilemap(Tilemap tilemap)
+    {
+        this.Tilemap = tilemap;
+    }
+
     private void GetPosition()
     {
         Vector3 enemyPos = Enemy.transform.position;

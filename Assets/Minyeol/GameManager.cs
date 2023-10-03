@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EnumManager;
+using UnityEngine.Pool;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,13 +33,19 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+    public ObjectPool objectPool;
 
     public PlayerController player;
     public CameraFollow cameraFollow;
 
     public Transform gameUICanvasTrans;
+
     public Stage currentStage = Stage.Stage1;
 
+    [HideInInspector]
+    public Room currentRoom;
+    [HideInInspector]
+    public int currentRoomClearPoint = 0;
     [HideInInspector]
     public ShopSO currentShopData;
 
@@ -62,11 +69,23 @@ public class GameManager : MonoBehaviour
             UIShop shopPopup = UIManager.Instance.ShowPopup<UIShop>();
             shopPopup.transform.SetParent(GameManager.Instance.gameUICanvasTrans, false);
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            currentRoom.OnClearRoom();
+        }
     }
 
     private void ChangeStageShopData()
     {
         string dataName = string.Concat(currentStage.ToString(), "_Shop");
         currentShopData = Resources.Load("ShopData/" + dataName, typeof(ShopSO)) as ShopSO;
+    }
+
+    public void OnPlayerMoveRoom(Room moveRoom)
+    {
+        cameraFollow.SetTarget(moveRoom.transform);
+        currentRoom = moveRoom;
+        currentRoomClearPoint = currentRoom.SpawnEnemy();
     }
 }
