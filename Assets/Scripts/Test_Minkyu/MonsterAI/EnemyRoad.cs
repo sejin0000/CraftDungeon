@@ -9,8 +9,8 @@ using UnityEngine.Tilemaps;
 
 public class EnemyRoad : MonoBehaviour
 {
-    [SerializeField] private GameObject Enemy;
-    [SerializeField] private GameObject Player;
+    private GameObject Enemy;
+    private GameObject Player;
     [SerializeField] private Tilemap Tilemap;
     private bool isDelay;
 
@@ -49,6 +49,8 @@ public class EnemyRoad : MonoBehaviour
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        Enemy = this.gameObject;
     }
     private void Start()
     {
