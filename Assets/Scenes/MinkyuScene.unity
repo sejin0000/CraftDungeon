@@ -1571,6 +1571,7 @@ GameObject:
   - component: {fileID: 838313990}
   - component: {fileID: 838313991}
   - component: {fileID: 838313992}
+  - component: {fileID: 838313993}
   m_Layer: 0
   m_Name: Test_Mob
   m_TagString: Untagged
@@ -1681,6 +1682,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &838313993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838313988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4daa5d1e65a9e6f40bfebf62b3e57128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 3a3858aad76002d4c9b7d3fbd6ce2136, type: 2}
+  hp: 30
+  damage: 5
+  moveSpeed: 2
 --- !u!1 &1033839070
 GameObject:
   m_ObjectHideFlags: 0
