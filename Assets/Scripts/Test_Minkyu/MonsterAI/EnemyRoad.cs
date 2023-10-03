@@ -25,6 +25,11 @@ public class EnemyRoad : MonoBehaviour
     private Enemy _enemyData;
     private Rigidbody2D _rigidbody;
 
+    private Animator animator;
+    private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+    private static readonly int IsHit = Animator.StringToHash("IsHit");
+    private static readonly int Attack = Animator.StringToHash("Attack");
+
     private enum Directions
     {
         Up = 0,
@@ -52,6 +57,7 @@ public class EnemyRoad : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player");
         Enemy = this.gameObject;
+        animator = GetComponentInChildren<Animator>();
         //EnemyData = GetComponent<EnemyData>();
     }
     private void Start()
@@ -80,11 +86,14 @@ public class EnemyRoad : MonoBehaviour
         float dist = Vector3.Distance(Player.transform.position, Enemy.transform.position);
         if (dist < 1f)
         {
+            animator.SetBool(IsWalking, false);
             // АјАн
             Debug.Log("Attack");
+            animator.SetTrigger(Attack);
         }
         else
         {
+            animator.SetBool(IsWalking, true);
             if (Route.Count <= 2)
             {
                 Vector3 _moveDirection = (Player.transform.position - Enemy.transform.position).normalized;
