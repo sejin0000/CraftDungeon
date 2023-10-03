@@ -78,6 +78,7 @@ public class MapCreator : MonoBehaviour
 
                 // 테스트용
                 GameManager.Instance.cameraFollow.SetTarget(loadedRooms[0].transform);
+                GameManager.Instance.currentRoom = loadedRooms[0];
                 loadedRooms[0].isClear = true;
 
                 continue;
@@ -94,12 +95,14 @@ public class MapCreator : MonoBehaviour
             {
                 //임시로 보스방 근처에 생성되게 했습니다
                 LoadRoom(new RoomInfo(string.Concat(stage, "_Shop"), roomLocation));
+                loadedRooms[loadedRooms.Count - 1].isClear = true;
             }
             else
             {
                 if (Gacha(BONUS_ROOM_RATE))
                 {
                     LoadRoom(new RoomInfo(string.Concat(stage, "_Bonus"), roomLocation));
+                    loadedRooms[loadedRooms.Count - 1].isClear = true;
                 }
                 else
                 {

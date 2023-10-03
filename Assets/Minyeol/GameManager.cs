@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Room currentRoom;
     [HideInInspector]
+    public int currentRoomClearPoint = 0;
+    [HideInInspector]
     public ShopSO currentShopData;
 
     private void Start()
@@ -67,6 +69,11 @@ public class GameManager : MonoBehaviour
             UIShop shopPopup = UIManager.Instance.ShowPopup<UIShop>();
             shopPopup.transform.SetParent(GameManager.Instance.gameUICanvasTrans, false);
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            currentRoom.OnClearRoom();
+        }
     }
 
     private void ChangeStageShopData()
@@ -79,6 +86,6 @@ public class GameManager : MonoBehaviour
     {
         cameraFollow.SetTarget(moveRoom.transform);
         currentRoom = moveRoom;
-        currentRoom.SpawnEnemy();
+        currentRoomClearPoint = currentRoom.SpawnEnemy();
     }
 }

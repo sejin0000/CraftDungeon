@@ -38,10 +38,17 @@ public class Room : MonoBehaviour
         }
     }
 
-    public void SpawnEnemy()
+    public void OnClearRoom()
+    {
+        isClear = true;
+    }
+
+    public int SpawnEnemy()
     {
         if (isClear)
-            return;
+            return 0;
+
+        int enemyCount = 0;
 
         for(int i = 0; i < _spawnTrans.Count; i++)
         {
@@ -50,7 +57,11 @@ public class Room : MonoBehaviour
             newEnemy.transform.position = _spawnTrans[i].position;
             newEnemy.transform.SetParent(null, false);
             newEnemy.SetActive(true);
+
+            enemyCount += 1;
         }
+
+        return enemyCount;
     }
 
     public void RemoveUnconnectedDoors()
