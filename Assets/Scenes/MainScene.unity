@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6522213}
   - component: {fileID: 6522212}
+  - component: {fileID: 6522214}
   m_Layer: 0
   m_Name: GameUIManager
   m_TagString: Untagged
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoPanel: {fileID: 13461489}
-  InvenPanel: {fileID: 720614995}
+  InvenPanel: {fileID: 1045720641}
   canvas: {fileID: 1045720644}
 --- !u!4 &6522213
 Transform:
@@ -170,6 +171,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6522214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6522211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393281e6f0b8bcf4f9b6f23daade2410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InvenRect: {fileID: 1288002310}
+  InvenSlot: {fileID: 3228664705969731425, guid: 05fe30e17d40ebf42bfac5520db5f8a4, type: 3}
+  slot: {fileID: 6110055047219746210, guid: 322fd3225216a704482106c977deff21, type: 3}
 --- !u!1 &13461489
 GameObject:
   m_ObjectHideFlags: 0
