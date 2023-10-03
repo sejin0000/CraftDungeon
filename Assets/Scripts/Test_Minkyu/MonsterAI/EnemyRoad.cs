@@ -19,6 +19,11 @@ public class EnemyRoad : MonoBehaviour
     private PriorityQueue OpenedSet;
     private List<Node> ClosedSet;
 
+    private List<Node> Route = new List<Node>();
+
+
+    private Rigidbody2D _rigidbody;
+
     private enum Directions
     {
         Up = 0,
@@ -41,7 +46,10 @@ public class EnemyRoad : MonoBehaviour
         new Vector3(-1, -1, 0),
         new Vector3(1, -1, 0)
     };
-
+    void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
     private void Start()
     {
         CreateGrid();
@@ -55,7 +63,24 @@ public class EnemyRoad : MonoBehaviour
             isDelay = true;
             GetPosition();
             PathFinding();
+            Route = GetPath(Enemy.transform.position, Player.transform.position);
             StartCoroutine(CallPosPerSecond());
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (Route.Count == 0)
+            return;
+        
+        if (GetNodeFromPos(Enemy.transform.position) != Route[0])
+        {
+            Vector3 _moveDirection = (new Vector3(Route[0].xPos, Route[0].yPos, transform.position.z) - new Vector3(GetNodeFromPos(Enemy.transform.position).xPos, GetNodeFromPos(Enemy.transform.position).yPos, 0)).normalized;
+            _rigidbody.MovePosition(_rigidbody.position + new Vector2(_moveDirection.x, _moveDirection.y) * 5 * Time.fixedDeltaTime);
+        }
+        else
+        {
+            Route.RemoveAt(0);
         }
     }
     private void GetPosition()
@@ -121,15 +146,23 @@ public class EnemyRoad : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    Debug.DrawLine(startPos, new Vector3(path[i].xPos, path[i].yPos) - startDiffPos, Color.red, 5f);
+                    Vector3Int cellPos = Tilemap.WorldToCell(new Vector3(path[i].xPos, path[i].yPos));
+                    Vector3 cellCenterPos = Tilemap.GetCellCenterWorld(cellPos) - Tilemap.cellGap / 2;
+                    Debug.DrawLine(startPos, cellCenterPos - startDiffPos, Color.red, 5f);
                 }
                 if (i == path.Count - 2)
                 {
-                    Debug.DrawLine(new Vector3(path[i].xPos, path[i].yPos) - startDiffPos, endPos, Color.red, 5f);
+                    Vector3Int cellPos = Tilemap.WorldToCell(new Vector3(path[i].xPos, path[i].yPos));
+                    Vector3 cellCenterPos = Tilemap.GetCellCenterWorld(cellPos) - Tilemap.cellGap / 2;
+                    Debug.DrawLine(cellCenterPos - startDiffPos, endPos, Color.red, 5f);
                 }
                 else
                 {
-                    Debug.DrawLine(new Vector3(path[i].xPos, path[i].yPos) - startDiffPos, new Vector3(path[i + 1].xPos, path[i + 1].yPos) - startDiffPos, Color.red, 5f);
+                    Vector3Int startCellPos = Tilemap.WorldToCell(new Vector3(path[i].xPos, path[i].yPos));
+                    Vector3 startCellCenterPos = Tilemap.GetCellCenterWorld(startCellPos) - Tilemap.cellGap / 2;
+                    Vector3Int endCellPos = Tilemap.WorldToCell(new Vector3(path[i + 1].xPos, path[i + 1].yPos));
+                    Vector3 endCellCenterPos = Tilemap.GetCellCenterWorld(endCellPos) - Tilemap.cellGap / 2;
+                    Debug.DrawLine(startCellCenterPos - startDiffPos, endCellCenterPos - startDiffPos, Color.red, 5f);
                 }
             }
         }
@@ -160,9 +193,19 @@ public class EnemyRoad : MonoBehaviour
                 List<Node> ansPath = new List<Node>();
                 Node ansNode = currentNode;
                 ansPath.Add(ansNode);
-
                 while (ansNode.xIndex != startNode.xIndex || ansNode.yIndex != startNode.yIndex)
                 {
+                    if (Math.Abs(ansNode.xPos - ansNode.parent.xPos) == 1 && Math.Abs(ansNode.yPos - ansNode.parent.yPos) == 1)
+                    {
+                        if (grid[ansNode.parent.yIndex, ansNode.xIndex].isWalkable)
+                        {
+                            ansPath.Add(grid[ansNode.parent.yIndex, ansNode.xIndex]);
+                        }
+                        else
+                        {
+                            ansPath.Add(grid[ansNode.yIndex, ansNode.parent.xIndex]);
+                        }
+                    }
                     ansPath.Add(ansNode.parent);
                     ansNode = ansNode.parent;
                 }

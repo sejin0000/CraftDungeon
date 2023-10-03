@@ -35,6 +35,6 @@ public class PlayerInputController : TopDownCharacterController
 
     public void OnInventory()
     {
-        UIManager.instance.OpenCloseInventory();
+        UIManager.Instance.OpemCloseInventory();
     }
 }
