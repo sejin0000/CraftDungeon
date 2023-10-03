@@ -43,10 +43,6 @@ public class SlotSetting : MonoBehaviour
                 go.transform.position = slots[i].transform.position;
                 return true;
             }
-            else
-            {
-                Debug.Log("남은 슬롯이 없습니다");
-            }
         }
         return false;
     }
