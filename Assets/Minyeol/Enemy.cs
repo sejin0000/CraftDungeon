@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
     public float unBeatTime = 0.01f;
 
 
-    public SpriteRenderer[] spr = new SpriteRenderer[3];
+    public SpriteRenderer spr;
     public Rigidbody2D rigid;
 
     PlayerController player;
@@ -26,7 +26,8 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        rigid = GetComponent <Rigidbody2D>();
+        spr = GetComponentInChildren <SpriteRenderer>();
     }
     private void Start()
     {
@@ -52,7 +53,7 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
             // 내 체력 깎기(player의 weapon 데미지만큼)
             Debug.Log("무기 데미지" + item.power);
             Debug.Log("피격" + hp);
-            KnockBaek();
+            KnockBack();
             Hit();
             if (hp <= 0)
             {
@@ -62,9 +63,12 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
         }
     }
 
-    private void KnockBaek()
+    private void KnockBack()
     {
-        StartCoroutine("KnockBack");
+        Vector3 PlayerPos = GameManager.Instance.player.transform.position;
+        Vector3 Dirvec = transform.position - PlayerPos;
+
+        rigid.AddForce(Dirvec.normalized * 10, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -92,29 +96,14 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
     IEnumerator UnBeatTime()
     {
 
-        foreach (var _spr in spr)
-        {
-            _spr.color = new Color32(255, 142, 142, 255);
-            invincibility = true;
-        }
+        spr.color = new Color32(255, 142, 142, 255);
+        invincibility = true;
 
         yield return new WaitForSeconds(unBeatTime);
 
-        foreach (var _spr in spr)
-        {
-            //Alpha Effect End
-            _spr.color = new Color32(255, 255, 255, 255);
-            invincibility = false;
-        }
-        yield return null;
-    }
+        spr.color = new Color32(255, 255, 255, 255);
+        invincibility = false;
 
-    IEnumerator KnockBack()
-    {
-        Vector3 PlayerPos = player.transform.position;
-        Vector3 Dirvec = transform.position - PlayerPos;
-
-        rigid.AddForce(Dirvec.normalized * 3,ForceMode2D.Impulse);
         yield return null;
     }
 
