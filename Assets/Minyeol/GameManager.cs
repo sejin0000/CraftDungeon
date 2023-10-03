@@ -91,6 +91,15 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerMoveRoom(Room moveRoom)
     {
+        if (moveRoom.CompareTag("BossRoom"))
+        {
+            AudioClip bgmClip = SoundManager.Instance.GetOrAddAudioClip("AudioSource/bgm/bossRoombgm", SoundManager.Sound.bgm);
+            AudioSource bgm = SoundManager.Instance.transform.GetChild(0).GetComponent<AudioSource>();
+            bgm.clip = bgmClip;
+            bgm.loop = true;
+            bgm.volume = 0.3f;
+            SoundManager.Instance.Play(bgm.clip, SoundManager.Sound.bgm);
+        }
         cameraFollow.SetTarget(moveRoom.transform);
         currentRoom = moveRoom;
         currentRoomClearPoint = currentRoom.SpawnEnemy();

@@ -1411,6 +1411,9 @@ MonoBehaviour:
   - tag: Skeleton
     prefab: {fileID: 1839055597228276784, guid: ae043aa017a4a1b42b01e3ad6f780ea0, type: 3}
     size: 5
+  - tag: BossSkeleton
+    prefab: {fileID: 153346559805311574, guid: 3105135266e9f4d4dada7fde48cd93a8, type: 3}
+    size: 1
 --- !u!1 &1236908094
 GameObject:
   m_ObjectHideFlags: 0
