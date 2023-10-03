@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
 {
     public EnemyData enemyData;
+    public EnemyRoad enemyRoad;
 
     [SerializeField]
     private int hp;
@@ -18,6 +19,8 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
     public float unBeatTime = 0.01f;
 
 
+
+
     public SpriteRenderer spr;
     public Rigidbody2D rigid;
 
@@ -28,6 +31,7 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
     {
         rigid = GetComponent <Rigidbody2D>();
         spr = GetComponentInChildren <SpriteRenderer>();
+        enemyRoad = GetComponent<EnemyRoad>();
     }
     private void Start()
     {
@@ -44,7 +48,8 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
         {
 
             EffectManager.instance.effectOn(collision.transform);
-
+            KnockBack();
+            Hit();
             Debug.Log("현재" + hp);
 
             ItemSO item = collision.gameObject.GetComponent<EquippedItem>().curItem;
@@ -53,8 +58,7 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
             // 내 체력 깎기(player의 weapon 데미지만큼)
             Debug.Log("무기 데미지" + item.power);
             Debug.Log("피격" + hp);
-            KnockBack();
-            Hit();
+            
             if (hp <= 0)
             {
                 this.gameObject.SetActive(false);
@@ -65,10 +69,8 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
 
     private void KnockBack()
     {
-        Vector3 PlayerPos = GameManager.Instance.player.transform.position;
-        Vector3 Dirvec = transform.position - PlayerPos;
+        StartCoroutine(KnockBack1());
 
-        rigid.AddForce(Dirvec.normalized * 10, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -80,8 +82,8 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
 
             Vector3 Dirvec = player.transform.position - transform.position;
             Debug.Log("Hello");
-            //player.GetComponent<Rigidbody2D>().AddForce(Dirvec.normalized * 5, ForceMode2D.Impulse);
-            player.GetComponent<Rigidbody2D>().AddForce(new Vector2(1,1) * 50, ForceMode2D.Impulse);
+            player.GetComponent<Rigidbody2D>().AddForce(Dirvec.normalized * 3, ForceMode2D.Impulse);
+
 
             player.Hit();
 
@@ -105,6 +107,17 @@ public class Enemy : MonoBehaviour // Enmey 오브젝트가 가지는 스크립트
         invincibility = false;
 
         yield return null;
+    }
+    IEnumerator KnockBack1()
+    {
+        enemyRoad.isKnockBack = true;
+        Vector3 PlayerPos = GameManager.Instance.player.transform.position;
+        Vector3 Dirvec = transform.position - PlayerPos;
+
+        rigid.AddForce(Dirvec.normalized * 3, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.5f);
+        enemyRoad.isKnockBack = false;
+
     }
 
 }

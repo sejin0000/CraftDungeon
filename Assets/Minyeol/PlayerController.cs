@@ -47,13 +47,6 @@ public class PlayerController : MonoBehaviour
         EffectManager.instance.effectOn(transform);
         StartCoroutine("UnBeatTime");
     }
-    public void KnockBack(Vector3 enemyPos)
-    {
-        Vector3 Dirvec = transform.position - enemyPos;
-
-        Debug.Log("Hello");
-        rigid.AddForce(Dirvec.normalized * 500, ForceMode2D.Impulse);
-    }
 
     IEnumerator UnBeatTime() 
     {
@@ -73,12 +66,5 @@ public class PlayerController : MonoBehaviour
             invincibility = false;
         }
         yield return null;
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Enemy"))
-        {
-            rigid.AddForce(new Vector2(1,1) * 500, ForceMode2D.Impulse);
-        }
     }
 }
