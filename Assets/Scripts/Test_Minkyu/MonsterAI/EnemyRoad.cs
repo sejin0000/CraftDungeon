@@ -72,6 +72,8 @@ public class EnemyRoad : MonoBehaviour
     }
     private void Update()
     {
+        RotateEnemy();
+
         if (isDelay == false)
         {
             isDelay = true;
@@ -122,6 +124,18 @@ public class EnemyRoad : MonoBehaviour
                     Route.RemoveAt(0);
                 }
             }
+        }
+    }
+
+    public void RotateEnemy()
+    {
+        if ((Player.transform.position.x - Enemy.transform.position.x) < 0f)
+        {
+            Enemy.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        else
+        {
+            Enemy.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
     }
 
