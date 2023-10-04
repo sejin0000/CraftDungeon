@@ -1,10 +1,10 @@
 # CraftDungeon
 
-# 💾 기획
+## 💾 기획
 ![Craft-Dungeon](https://github.com/sejin0000/CraftDungeon/assets/141595995/a51fa680-25a6-42b1-8cdb-8e58666b8c83)
 <br/>
 <br/>
-# 🎬 영상 
+## 🎬 영상 
 [https://www.youtube.com/watch?v=5OaGzd5FOYk&t=6s](https://www.youtube.com/watch?v=AI-aRBK4vx0)
 <br/>
 <br/>
