@@ -23,4 +23,9 @@ namespace EnumManager
     {
         Skeleton, Lizard
     }
+
+    public enum RoomType
+    {
+        Normal, Boss, Bonus, Shop
+    }
 }

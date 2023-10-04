@@ -4,6 +4,7 @@ using UnityEngine;
 using NativeSerializableDictionary;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using EnumManager;
 
 public class MapCreator : MonoBehaviour
 {
@@ -48,17 +49,6 @@ public class MapCreator : MonoBehaviour
 
     public List<Room> loadedRooms = new List<Room>();
 
-    /*
-    private RoomInfo _currentLoadRoomData;
-
-    private bool isSpawnedBossRoom;
-    private bool isUpdatedRooms;
-    */
-
-    /*
-    [SerializeField]
-    private SerializableDictionary<string, GameObject> _roomPrefabs = new SerializableDictionary<string, GameObject>();
-    */
     private void Start()
     {
         mapRooms = mapCrawler.GenerateMap(_mapGenerationData);
@@ -74,7 +64,7 @@ public class MapCreator : MonoBehaviour
             // 시작룸은 고정룸
             if(roomLocation == Vector2.zero)
             {
-                LoadRoom(new RoomInfo(string.Concat(stage, "_Normal1"), Vector2.zero));
+                LoadRoom(new RoomInfo(string.Concat(stage, "_Normal1"), Vector2.zero, RoomType.Normal));
 
                 // 테스트용
                 GameManager.Instance.cameraFollow.SetTarget(loadedRooms[0].transform);
@@ -89,24 +79,24 @@ public class MapCreator : MonoBehaviour
 
             if ((roomLocation == mapRooms[mapRooms.Count - 1]) && (roomLocation != Vector2.zero))
             {
-                LoadRoom(new RoomInfo(string.Concat(stage, "_Boss"), roomLocation));
+                LoadRoom(new RoomInfo(string.Concat(stage, "_Boss"), roomLocation, RoomType.Boss));
             }
             else if((roomLocation == mapRooms[mapRooms.Count - 2]) && (roomLocation != Vector2.zero))
             {
                 //임시로 보스방 근처에 생성되게 했습니다
-                LoadRoom(new RoomInfo(string.Concat(stage, "_Shop"), roomLocation));
+                LoadRoom(new RoomInfo(string.Concat(stage, "_Shop"), roomLocation, RoomType.Shop));
                 loadedRooms[loadedRooms.Count - 1].isClear = true;
             }
             else
             {
                 if (Gacha(BONUS_ROOM_RATE))
                 {
-                    LoadRoom(new RoomInfo(string.Concat(stage, "_Bonus"), roomLocation));
+                    LoadRoom(new RoomInfo(string.Concat(stage, "_Bonus"), roomLocation, RoomType.Bonus));
                     loadedRooms[loadedRooms.Count - 1].isClear = true;
                 }
                 else
                 {
-                    LoadRoom(new RoomInfo(roomName, roomLocation));
+                    LoadRoom(new RoomInfo(roomName, roomLocation, RoomType.Normal));
                 }
             }
         }
@@ -127,6 +117,7 @@ public class MapCreator : MonoBehaviour
     public void LoadRoom(RoomInfo newRoom)
     {
         Room room = Instantiate(_mapGenerationData.roomPrefabs[newRoom.name]).GetComponent<Room>();
+        room.roomInfo = newRoom;
         room.roomPosition = newRoom.position;
         room.transform.position = new Vector3(newRoom.position.x * room.width, newRoom.position.y * room.height);
 
