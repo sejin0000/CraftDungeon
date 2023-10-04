@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerMoveRoom(Room moveRoom)
     {
-        if (moveRoom.CompareTag("BossRoom"))
+        if (moveRoom.roomInfo.roomType == RoomType.Boss)
         {
             AudioClip bgmClip = SoundManager.Instance.GetOrAddAudioClip("AudioSource/bgm/bossRoombgm", SoundManager.Sound.bgm);
             AudioSource bgm = SoundManager.Instance.transform.GetChild(0).GetComponent<AudioSource>();

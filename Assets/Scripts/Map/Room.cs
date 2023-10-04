@@ -10,6 +10,9 @@ public class Room : MonoBehaviour
     private Tilemap _roomTilemap;
 
     [HideInInspector]
+    public RoomInfo roomInfo;
+
+    [HideInInspector]
     public bool isClear = false;
 
     [SerializeField]
