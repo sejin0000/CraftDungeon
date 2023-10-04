@@ -10,7 +10,7 @@
 <br/>
 
 
-### 프로젝트 개요
+### 📙 프로젝트 개요
 
 ![001](https://github.com/sejin0000/CraftDungeon/assets/141595995/50dc34b9-fc94-4f13-9193-49812d8bac6e)
 <br/>
